@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: opensource - Reinaldo Junior</title>
+  <title>Playing with Droid - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: opensource">
+  <meta name="description" content="During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m proud to announce that it is working!Since the last blog post, the DSL &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/opensource">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2011/07/04/playing-with-droid">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +73,89 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: opensource</h1>
+    
+      <h1 class="entry-title">Playing with Droid</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-04T00:00:00-03:00" pubdate data-updated="true">Jul 4<span>th</span>, 2011</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a></h1>
-<time datetime="2011-12-10T09:09:00-02:00" pubdate><span class='month'>Dec</span> <span class='day'>10</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gstreamer/'>gstreamer</a>, <a class='category' href='/blog/categories/opensource/'>opensource</a></span>
-</footer>
-
-
-</article>
-
+<div class="entry-content"><div class='post'>
+During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m proud to announce that it is working!<br /><br />Since the <a href="http://blog.reinaldojunior.net/2011/05/droid-dsl.html">last blog post</a>, the DSL had changed. In order to simplify the DSL some concepts have been removed, for example, ImageButton, Link and ImageLink. These concepts are still available at the Button concept, so a Button with and &#8220;src&#8221; property is a ImageButton and a Button with a &#8220;target&#8221; property is a &#8220;Link&#8221;.<br /><br />Another significant change in the DSL is the merging of the Activity and Layout concepts in a single concept: Screen (although the layout concept is still existing). This made easier to write a simple application. The screen&#8217;s widgets can now be placed inside the screen (you don&#8217;t need anymore to create a layout to put the widgets and set the activity to show the created layout).<br /><br />So what used to be the simplest Droid example:<br /><pre>application "Hello, Android!" com.example.android.hellodroid {<br /><br /> string hello = "Hello, Android! I am a string resource!"<br /><br /> activity HelloDroid {<br />  =&gt; show main<br /> }<br /><br /> layout main {<br />  textView: @string hello<br /> }<br />}<br /></pre><br />Now is even simpler:<br /><pre>application "Hello, Android!" =&gt; com.example.android.hellodroid {<br /><br /> string hello = "Hello, Android! I am a string resource!"<br /><br /> screen HelloDroid {<br />  # textView: @string hello<br /> }<br />}<br /></pre><br />In order to play with the Droid DSL, you need to install some plugins:<br /><ol><li>Install the ADT Eclipse plugin. The target of the DSL is creating Android applications, so you must to install the ADT. The Android <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> tutorial is all you need to have your environment ready to the work.</li><li>Install the Droid plugins, located at this Update Site:&nbsp;<a href="http://reinaldojunior.net/eclipse-amalgamation-tutorials/">http://reinaldojunior.net/eclipse-amalgamation-tutorials/</a></li></ol><h3>Creating your first Droid Project</h3>A Droid project is an Eclipse Android Project that has automatic code generation from a droid model. The droid model is inferred from a .droid file (a textual representation of the model).<br /><br />To create a Droid project you must to:<br /><ol><li>Create an Android Project (following the instructions at the Hello World tutorial)</li><li>Create a &#8217;<i>model</i>&#8216;&nbsp;folder&nbsp;inside the project</li><li>Create a &#8217;<i>src-gen</i>&#8217; folder inside the project</li><li>Right-click the &#8217;<i>src-gen</i>&#8217; folder and select &#8220;Build Path&#8221; &gt; &#8220;Use as source folder&#8221;</li><li>You can delete the content of the &#8217;<i>src</i>&#8217; folder as it will have a generated Activity stub.</li></ol><div>Now you are ready to start playing with the Droid DSL.&nbsp;Inside&nbsp;the &#8217;<i>model</i>&#8217; folder, create a .droid file and open it. The file will be opened with the DSL textual editor (generated with&nbsp;Xtext).</div><div><br /></div><div>You can use this sample code to test your environment:</div><pre>application "SimpleWizard" =&gt; org.eclipse.amalgam.tutorials.android.simplewizard {<br /> <br /> screen First {<br />  # textView: "This is the first screen" {}<br />  # button: "Next &gt;" to Second {}<br /> }<br /> <br /> screen Second {<br />  # textView: "And this is the second screen" {}<br />  # button: "&lt; Back" to First {}<br />  # button: "Next &gt;" to Third {}<br /> }<br /><br /> screen Third {<br />  # textView: "Now, the last one" {}<br />  # button: "&lt; Back" to Second {}<br /> }<br />}</pre><h3>Generating the code</h3><ol><li>Right-click in the .droid file</li><li>Select &#8220;Acceleo Model to Text&#8221; &gt; &#8220;Generate Android Code&#8221;</li><li>The generated code will be available at the &#8217;<i>src-gen</i>&#8217; folder and at the &#8217;<i>res</i>&#8217; folder.</li></ol>In order to run the generated application, I recommend to use an Android 2.3.3 virtual device.<br /><ol></ol></div>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-04T00:00:00-03:00" pubdate data-updated="true">Jul 4<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/droid/'>droid</a>, <a class='category' href='/blog/categories/dsl/'>dsl</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gsoc/'>gsoc</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2011/07/04/playing-with-droid/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2011/07/04/playing-with-droid/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/05/29/droid-dsl/" title="Previous Post: The Droid DSL">&laquo; The Droid DSL</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/" title="next Post: Deploy automatizado de aplicações Rails com Capistrano e Github">Deploy automatizado de aplicações Rails com Capistrano e Github &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
@@ -234,19 +288,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'reinaldojunior';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

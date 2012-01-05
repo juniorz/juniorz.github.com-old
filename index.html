@@ -9,7 +9,7 @@
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="This post shows how to build and install GStreamer from source. It targets building GStreamer for Mac OS X Lion. The procedure is quite similar if &hellip;">
+  <meta name="description" content="O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo. Histórico Já usei o WordPress, tanto &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://juniorz.github.com">
+  <link rel="canonical" href="http://blog.reinaldojunior.net">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -30,6 +30,18 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 
   
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-4325461-2']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
 
 </head>
 
@@ -48,7 +60,7 @@
 </ul>
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
-    <input type="hidden" name="q" value="site:juniorz.github.com" />
+    <input type="hidden" name="q" value="site:blog.reinaldojunior.net" />
     <input class="search" type="text" name="q" results="0" placeholder="Search"/>
   </fieldset>
 </form>
@@ -68,7 +80,112 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2011/12/10/how-to-build-gstreamer-from-source/">How to Build GStreamer From Source</a></h1>
+      <h1 class="entry-title"><a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-05T10:34:00-02:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
+        
+         | <a href="/2012/01/05/migrando-o-blog-para-octopress/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo.</p>
+
+<h2>Histórico</h2>
+
+<p>Já usei o <a href="http://wordpress.org/">WordPress</a>, tanto hospedado pessoalmente quanto compartilhado no wordpress.com. O problema era: atualizar a versão do Wordpress, atualizar os plugins, acessar o painel pra postar e usar o editor WYSIWYG pra formatar. Muito trabalho.</p>
+
+<p>Em 2011, usei o <a href="http://www.blogger.com">Blogger</a>. Poucas opções pra customizar, e o mesmo workflow: acessar painel, usar editor WYSIWYG, alternar entre o código-fonte e o visual pra formatar. Muito trabalho.</p>
+
+<h2>Os problemas</h2>
+
+<ol>
+<li><p><strong>HTML sux</strong><br/>
+Usar uma linguagem de marcação tão verbosa (<code>&lt;strong&gt;</code> e <code>&lt;/strong&gt;</code> pra negrito, p.e.) e com tanto ruido atrapalha a escrita. As tags começam a quebrar a leitura (e as idéias) e no final você tem que ligar o seu interpretador de HTML cerebral pra expressar as idéias.<br/>
+<strong>Muito esforço.</strong> Por isso é <strong>muito ruim</strong> escrever tudo em HTML</p></li>
+<li><p><strong>O workflow envolve muitos passos online/offline</strong><br/>
+Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
+
+<ul>
+<li>Rascunhar os posts &#8220;offline&#8221;, escrevendo num arquivo .txt. Essa parte demora.</li>
+<li>Acessar o painel do blog &#8220;online&#8221;, criar o post</li>
+<li>Formatar o post &#8220;online&#8221;, olhar como ficou no editor WYSIWYG, repetir.</li>
+<li>Colocar color highlight nos códigos, disponibilizar os códigos pra download, etc.</li>
+</ul>
+
+
+<p>A questão não é a parte dos &#8220;muitos passos&#8221; e sim &#8220;online/offline&#8221;.</p></li>
+</ol>
+
+
+<p>O problema real é que as plataformas de blogging se baseiam no HTML (afinal de contas, se você pode publicar em HTML pode publicar qualquer coisa). <strong>Eu não quero fazer qualquer coisa que eu quiser. Quero fazer apenas o que eu preciso.</strong></p>
+
+<h2>Solução</h2>
+
+<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &#8220;suporte&#8221; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
+
+<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&#8230; <strong>Gambi</strong>.</p>
+
+<h2>Octopress</h2>
+
+<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> - um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
+
+<h3>Instalando</h3>
+
+<p>A instalação foi muito simples, é só seguir a <a href="http://octopress.org/docs/">documentação</a>. Em seguida, configurei o deploy para ser feito no <a href="http://octopress.org/docs/deploying/github/">Github Pages</a>. Isso é MUITO maneiro.</p>
+
+<h3>Importando do Blogger</h3>
+
+<p>Pra importar os posts do Blogger eu <a href="https://gist.github.com/1564581">modifiquei um script</a> que eu achei.<br/>
+<strong>Cuidado:</strong> ele vai limpar sua pasta <code>_posts</code>. O melhor é criar um diretorio <code>import</code>, jogar o script e o .xml do seu blogger nele, executar a importação e depois copiar de <code>import/_posts</code> para <code>_posts</code> do seu Octopress.</p>
+
+<h3>Workflow</h3>
+
+<p>Agora meu workflow é simples:</p>
+
+<ol>
+<li>Criar o rascunho em .txt (na verdade em .markdown)</li>
+<li>Escrever e formatar ao mesmo tempo</li>
+<li>Dar uma conferida na formatação:
+
+<ul>
+<li>Quando tô no Mac, uso o app <a href="http://itunes.apple.com/us/app/marked/id448925439?mt=12">Marked</a></li>
+<li>Independente de onde estou, dá pra usar <code>rake generate &amp;&amp; rake preview</code> e visualizar o blog em <code>localhost:4000</code></li>
+</ul>
+</li>
+<li><code>rake generate</code></li>
+<li><code>rake deploy</code></li>
+</ol>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a></h1>
     
     
       <p class="meta">
@@ -85,6 +202,8 @@
 
 
 <time datetime="2011-12-10T09:09:00-02:00" pubdate data-updated="true">Dec 10<span>th</span>, 2011</time>
+        
+         | <a href="/2011/12/10/how-to-build-gstreamer-from-source/#disqus_thread">Comments</a>
         
       </p>
     
@@ -311,7 +430,48 @@ http://doc.qt.nokia.com/4.7/qmake-project-files.html</p>
 
     </article>
   
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-11T00:00:00-03:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
+        
+         | <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.<br /><br /><h2>Configurando o servidor</h2>No servidor, crie um usuário que será utilizado para realizar o deploy. Eu utilizei uma senha gerada aleatóriamente (um MD5 de um arquivo, por exemplo). Em seguida, adicionei minha chave privada (a que eu uso para acessar meus repositórios no Github) ao arquivo authorized_keys do usuário de deploy.<br /><br /><b>Na máquina local</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />scp ~/.ssh/id_rsa.pub reinaldo@servidor:/home/reinaldo/my_key.pub<br />ssh reinaldo@servidor<br /></span><br /><br /><b>No servidor</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />sudo adduser deploy<br />MY_PUBLIC_KEY=/home/reinaldo/my_key.pub<br />sudo mkdir -p /home/deploy/.ssh<br />sudo cat $MY_PUBLIC_KEY&nbsp;&gt;&gt; /home/deploy/.ssh/authorized_keys &amp;&amp; rm&nbsp;$MY_PUBLIC_KEY<br />sudo chmod 600 /home/deploy/.ssh/authorized_keys<br />sudo chmod 700 /home/deploy/.ssh<br />sudo chown deploy:deploy -R /home/deploy</span><br /><br /><h2>Configurando a aplicação</h2>Adicione a gem capistrano no seu <b>Gemfile</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">gem &#8216;capistrano&#8217;</span><br /><br />Em seguida, no diretório da aplicação<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />bundle install<br />capify .<br />echo &#8220;.bundle\n&#8221; &gt;&gt; .gitignore<br /></span><br /><br />Isso vai criar o arquivo <b>config/deploy.rb</b> onde serão armazenadas as configurações de deploy, bem como as tasks.<br /><br />Meu arquivo ficou assim:<br /><script src="https://gist.github.com/1076956.js"> </script><br /><br />Pra finalizar, você precisa criar os diretórios no servidor. Para isso simplesmente execute (no diretorio da aplicação)<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy:setup</span><br /><br /><h2>Realizando o Deploy</h2><br />Depois disso, você poderá realizar seu deploy automático executando o comando:<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy</span></div>
+</div>
+  
+  
+
+
+    </article>
+  
   <div class="pagination">
+    
+      <a class="prev" href="/blog/page/2/">&larr; Older</a>
     
     <a href="/blog/archives">Blog Archives</a>
     
@@ -324,7 +484,43 @@ http://doc.qt.nokia.com/4.7/qmake-project-files.html</p>
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a>
+        <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/07/04/playing-with-droid/">Playing with Droid</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/29/droid-dsl/">The Droid DSL</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/05/15/xtext-editor-unexpectedly-stopped/">Xtext Editor unexpectedly stopped working</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/04/26/o-que-e-o-google-summer-of-code/">O que é o Google Summer of Code?</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2011/04/05/proposta-para-o-google-summer-of-code/">Proposta para o Google Summer of Code 2011</a>
       </li>
     
   </ul>
@@ -350,7 +546,7 @@ http://doc.qt.nokia.com/4.7/qmake-project-files.html</p>
 
         github.showRepos({
             user: 'juniorz',
-            count: 0,
+            count: 4,
             skip_forks: true,
             target: '#gh_repos'
         });
@@ -409,7 +605,29 @@ http://doc.qt.nokia.com/4.7/qmake-project-files.html</p>
 </footer>
   
 
+<script type="text/javascript">
+      var disqus_shortname = 'reinaldojunior';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 

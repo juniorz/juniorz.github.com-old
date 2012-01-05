@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: opensource - Reinaldo Junior</title>
+  <title>The Droid DSL - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: opensource">
+  <meta name="description" content="The first part of my GSoC project is creating a DSL (Domain Specific Language) targeting the development of Android applications. The main objective &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/opensource">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2011/05/29/droid-dsl">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +73,89 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: opensource</h1>
+    
+      <h1 class="entry-title">The Droid DSL</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T00:00:00-03:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a></h1>
-<time datetime="2011-12-10T09:09:00-02:00" pubdate><span class='month'>Dec</span> <span class='day'>10</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gstreamer/'>gstreamer</a>, <a class='category' href='/blog/categories/opensource/'>opensource</a></span>
-</footer>
-
-
-</article>
-
+<div class="entry-content"><div class='post'>
+The first part of <a href="http://www.google-melange.com/gsoc/project/google/gsoc2011/juniorz/10001">my GSoC project</a> is creating a DSL (<a href="http://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a>) targeting the development of <a href="http://www.android.com/">Android</a> applications. The main objective is the building of a DSL which can be used as the basis to the development of the Amalgamation Tutorials (the project&#8217;s final objective).<br /><br />The DSL&#8217;s abstract syntax [1] (an <a href="http://wiki.eclipse.org/Ecore">Ecore</a> metamodel) was created from the definition of a concrete syntax &nbsp;(a Xtext grammar [2]). To this part, I used&nbsp;<a href="http://www.eclipse.org/Xtext/">Xtext</a>. Before that, I and my mentor had discussed about what granularity level should be used to choose what concepts should be expressed in the DSL. A too fine granularity level could lead to a very detailed DSL but would take too much time to complete, while a too coarse one could lead to an very constrained DSL (and maybe useless).<br /><a name='more'></a><br /><br />Considering this, I chose the following concepts as main concepts to the DSL:<br /><ul><li><b>Application</b> - The main concept. We&#8217;re talking about Android Applications.</li><li><b>Activity</b> - Represents an application screen and the user interface displayed.</li><li><b>Layout</b> - Represents a collection of UI elements</li><li><b>Widget</b> - Represents the various UI elements</li><li><b>Resource</b> - Represents values which can be assigned to widgets properties. They have a type and can be serialized to a resource file (XML)&nbsp;</li></ul>The following example ilustrates the <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> sample application (provided by Android) written using the Droid DSL (there are more Hello World examples available [3])<br /><br /><script src="https://gist.github.com/998290.js"></script><br /><br />In order to have some direction in the creation of the tutorials, I started to create a code-generator using a Model-to-Text transformation. The transformation [4] can generate the <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest.xml</a> file that describes the application, the Activity Java class, the Layout XML file and the String resource XML file.<br />To make this I used the <a href="http://www.eclipse.org/acceleo/">Acceleo</a>.<br /><br />If you want to play with this DSL you just need to install the <a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/deploy/plugins">generated plugins</a> in your Eclipse and create a new file with the <i>.droid</i> extension.&nbsp;For more information check the <a href="https://github.com/eclipse-soc/amalgamation-examples">project repository</a> at GitHub.<br /><div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;"><br /></div><b><i>References</i></b>:<br /><br /><ol><li>Harel, D., &amp; Rumpe, B. (2000). <a href="http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.10.1512">Modeling Languages: Syntax, Semantics and All That Stuff Part I: The Basic Stuff</a>. Citeseer. doi: 10.1.1.10.1512.</li><li>To more info, see:&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/blob/master/xtext/plugins/org.eclipse.amalgam.tutorials.xtext/src/org/eclipse/amalgam/tutorials/xtext/Droid.xtext">Droid.xtext</a></li><li>Some of the Hello Views tutorials are available:&nbsp;<a href="https://gist.github.com/998350">Relative Layout</a>&nbsp;and&nbsp;<a href="https://gist.github.com/998349">Linear Layout</a>.</li><li>Available under&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/acceleo/plugins/org.eclipse.amalgam.tutorials.acceleo/src/org/eclipse/amalgam/tutorials/acceleo/files">this path</a></li></ol></div>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T00:00:00-03:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/acceleo/'>acceleo</a>, <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/droid/'>droid</a>, <a class='category' href='/blog/categories/dsl/'>dsl</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gsoc/'>gsoc</a>, <a class='category' href='/blog/categories/xtext/'>xtext</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2011/05/29/droid-dsl/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2011/05/29/droid-dsl/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/05/15/xtext-editor-unexpectedly-stopped/" title="Previous Post: Xtext Editor unexpectedly stopped working">&laquo; Xtext Editor unexpectedly stopped working</a>
+      
+      
+        <a class="basic-alignment right" href="/2011/07/04/playing-with-droid/" title="next Post: Playing with Droid">Playing with Droid &raquo;</a>
+      
+    </p>
+  </footer>
 </article>
 
 </div>
@@ -234,19 +288,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'reinaldojunior';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

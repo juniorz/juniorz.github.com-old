@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: opensource - Reinaldo Junior</title>
+  <title>Migrando o blog para Octopress - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: opensource">
+  <meta name="description" content="O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo. Histórico Já usei o WordPress, tanto &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/opensource">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,36 +73,156 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: opensource</h1>
+    
+      <h1 class="entry-title">Migrando o blog para Octopress</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-05T10:34:00-02:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo.</p>
 
-  
-  <h2>2011</h2>
+<h2>Histórico</h2>
 
-<article>
-  
-<h1><a href="/2011/12/10/how-to-build-gstreamer-from-source/">How to build GStreamer from source</a></h1>
-<time datetime="2011-12-10T09:09:00-02:00" pubdate><span class='month'>Dec</span> <span class='day'>10</span> <span class='year'>2011</span></time>
+<p>Já usei o <a href="http://wordpress.org/">WordPress</a>, tanto hospedado pessoalmente quanto compartilhado no wordpress.com. O problema era: atualizar a versão do Wordpress, atualizar os plugins, acessar o painel pra postar e usar o editor WYSIWYG pra formatar. Muito trabalho.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/gstreamer/'>gstreamer</a>, <a class='category' href='/blog/categories/opensource/'>opensource</a></span>
-</footer>
+<p>Em 2011, usei o <a href="http://www.blogger.com">Blogger</a>. Poucas opções pra customizar, e o mesmo workflow: acessar painel, usar editor WYSIWYG, alternar entre o código-fonte e o visual pra formatar. Muito trabalho.</p>
+
+<h2>Os problemas</h2>
+
+<ol>
+<li><p><strong>HTML sux</strong><br/>
+Usar uma linguagem de marcação tão verbosa (<code>&lt;strong&gt;</code> e <code>&lt;/strong&gt;</code> pra negrito, p.e.) e com tanto ruido atrapalha a escrita. As tags começam a quebrar a leitura (e as idéias) e no final você tem que ligar o seu interpretador de HTML cerebral pra expressar as idéias.<br/>
+<strong>Muito esforço.</strong> Por isso é <strong>muito ruim</strong> escrever tudo em HTML</p></li>
+<li><p><strong>O workflow envolve muitos passos online/offline</strong><br/>
+Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
+
+<ul>
+<li>Rascunhar os posts &#8220;offline&#8221;, escrevendo num arquivo .txt. Essa parte demora.</li>
+<li>Acessar o painel do blog &#8220;online&#8221;, criar o post</li>
+<li>Formatar o post &#8220;online&#8221;, olhar como ficou no editor WYSIWYG, repetir.</li>
+<li>Colocar color highlight nos códigos, disponibilizar os códigos pra download, etc.</li>
+</ul>
 
 
-</article>
+<p>A questão não é a parte dos &#8220;muitos passos&#8221; e sim &#8220;online/offline&#8221;.</p></li>
+</ol>
+
+
+<p>O problema real é que as plataformas de blogging se baseiam no HTML (afinal de contas, se você pode publicar em HTML pode publicar qualquer coisa). <strong>Eu não quero fazer qualquer coisa que eu quiser. Quero fazer apenas o que eu preciso.</strong></p>
+
+<h2>Solução</h2>
+
+<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &#8220;suporte&#8221; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
+
+<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&#8230; <strong>Gambi</strong>.</p>
+
+<h2>Octopress</h2>
+
+<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> - um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
+
+<h3>Instalando</h3>
+
+<p>A instalação foi muito simples, é só seguir a <a href="http://octopress.org/docs/">documentação</a>. Em seguida, configurei o deploy para ser feito no <a href="http://octopress.org/docs/deploying/github/">Github Pages</a>. Isso é MUITO maneiro.</p>
+
+<h3>Importando do Blogger</h3>
+
+<p>Pra importar os posts do Blogger eu <a href="https://gist.github.com/1564581">modifiquei um script</a> que eu achei.<br/>
+<strong>Cuidado:</strong> ele vai limpar sua pasta <code>_posts</code>. O melhor é criar um diretorio <code>import</code>, jogar o script e o .xml do seu blogger nele, executar a importação e depois copiar de <code>import/_posts</code> para <code>_posts</code> do seu Octopress.</p>
+
+<h3>Workflow</h3>
+
+<p>Agora meu workflow é simples:</p>
+
+<ol>
+<li>Criar o rascunho em .txt (na verdade em .markdown)</li>
+<li>Escrever e formatar ao mesmo tempo</li>
+<li>Dar uma conferida na formatação:
+
+<ul>
+<li>Quando tô no Mac, uso o app <a href="http://itunes.apple.com/us/app/marked/id448925439?mt=12">Marked</a></li>
+<li>Independente de onde estou, dá pra usar <code>rake generate &amp;&amp; rake preview</code> e visualizar o blog em <code>localhost:4000</code></li>
+</ul>
+</li>
+<li><code>rake generate</code></li>
+<li><code>rake deploy</code></li>
+</ol>
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2012-01-05T10:34:00-02:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
+      
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2011/12/10/how-to-build-gstreamer-from-source/" title="Previous Post: How to build GStreamer from source">&laquo; How to build GStreamer from source</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -239,7 +359,10 @@
       var disqus_shortname = 'reinaldojunior';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/';
+        var disqus_url = 'http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
