@@ -1,0 +1,13 @@
+---
+layout: post
+title: "Xtext Editor unexpectedly stopped working"
+date: 2011-05-15
+comments: false
+categories:
+ - tip
+ - eclipse
+ - xtext
+---
+
+<div class='post'>
+Working on my GSoC project, I noted that the generated Xtext Editor simply stopped to work. Looking at the logs I found the message:<br /><blockquote>!MESSAGE Unable to create editor ID org.eclipse.amalgam.tutorials.xtext.Droid: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>And when I launched the "Eclipse Application" run configuration, the resulting Eclipse warned:<br /><blockquote>Could not open the editor: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>After some time cursing Xtext, I discovered that in order to launch the "Eclipse Application" run configuration, <b>you must to have all the generated projects opened in the package explorer</b>&nbsp;(that means both <i>.generator</i> and <i>.ui</i> projects must be open).</div>
