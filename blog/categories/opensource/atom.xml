@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: opensource | Reinaldo Junior]]></title>
+  <link href="http://juniorz.github.com/blog/categories/opensource/atom.xml" rel="self"/>
+  <link href="http://juniorz.github.com/"/>
+  <updated>2012-01-05T07:46:14-02:00</updated>
+  <id>http://juniorz.github.com/</id>
+  <author>
+    <name><![CDATA[Reinaldo Junior]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[How to build GStreamer from source]]></title>
+    <link href="http://juniorz.github.com/blog/2011/12/10/how-to-build-gstreamer-from-source/"/>
+    <updated>2011-12-10T09:09:00-02:00</updated>
+    <id>http://juniorz.github.com/blog/2011/12/10/how-to-build-gstreamer-from-source</id>
+    <content type="html"><![CDATA[<p>This post shows how to build and install <a href="http://gstreamer.freedesktop.org/">GStreamer</a> from source. It targets building GStreamer for Mac OS X Lion. The procedure is quite similar if you want to build GStreamer for Linux.</p>
+
+<p>The GStreamer is organized into <a href="http://gstreamer.freedesktop.org/modules/">several modules</a>. The required modules are <strong>gstreamer</strong>, <strong>gst-plugins-base</strong> and <strong>gst-plugins-good</strong> (if you want to do anything useful). This post will show how to build also <strong>gst-plugins-bad</strong> and <strong>qt-gstreamer</strong> modules.</p>
+
+<h3>Pre-requisites</h3>
+
+<p>``` bash
+brew update
+brew install gettext pkg-config glib</p>
+
+<h1>autopoint is missing on Lion</h1>
+
+<p>PATH="$PATH:<code>brew --prefix gettext</code>/bin/"</p>
+
+<h1>Required libs provided by homebrew</h1>
+
+<p>brew install libiconv libffi
+```</p>
+
+<h3>Environment</h3>
+
+<p>``` bash
+BUILD_ROOT=~/gstreamer-src
+BUILD_TARGET=~/gstreamer</p>
+
+<p>mkdir $BUILD_TARGET
+mkdir $BUILD_ROOT &amp;&amp; cd $BUILD_ROOT
+```</p>
+
+<h3>Getting the source</h3>
+
+<p><code>bash
+git clone git://anongit.freedesktop.org/gstreamer/gstreamer
+git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-base
+git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-good
+git clone git://anongit.freedesktop.org/gstreamer/gst-plugins-bad
+git clone git://anongit.freedesktop.org/gstreamer/qt-gstreamer
+</code></p>
+
+<h2>Building the base module (gstreamer)</h2>
+
+<p>``` bash
+cd $BUILD_ROOT/gstreamer</p>
+
+<p>GST_CONFIG_PATH="<code>brew --prefix libiconv</code>/lib/pkgconfig:<code>brew --prefix libffi</code>/lib/pkgconfig:<code>brew --prefix gettext</code>/lib/pkgconfig"</p>
+
+<p>./autogen.sh --noconfigure
+./configure --disable-gtk-doc --disable-debug --with-pkg-config-path=$GST_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+
+<p>make
+make install</p>
+
+<h1>Required</h1>
+
+<p>GSTP_CONFIG_PATH="$BUILD_TARGET/lib/pkgconfig"
+```</p>
+
+<h2>Building the plugin base module (gst-plugins-base)</h2>
+
+<p>``` bash</p>
+
+<h1>liborc support</h1>
+
+<h1>http://code.entropywave.com/projects/orc/</h1>
+
+<p>brew install orc</p>
+
+<h1>Vorbis support</h1>
+
+<p>brew install libvorbis</p>
+
+<p>cd "$BUILD_ROOT/gst-plugins-base"
+./autogen.sh --noconfigure
+./configure --disable-gtk-doc --disable-debug --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+
+<p>make
+make install
+```</p>
+
+<h2>Building the "good" plugins (gst-plugins-good)</h2>
+
+<p>``` bash
+cd "$BUILD_ROOT/gst-plugins-good"
+./autogen.sh --noconfigure
+./configure --disable-gtk-doc --disable-debug --disable-goom --disable-libpng --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+
+<p>make
+make install
+```</p>
+
+<h2>Building the "bad" plugind (gst-plugins-bad)</h2>
+
+<p><strong>Note</strong>: <em>osxvideosrc</em> and <em>qtwrapper</em> are disabled because they use deprecated APIs (<a href="http://code.google.com/p/ossbuild/wiki/MacBuild">more info</a>).</p>
+
+<p>``` bash</p>
+
+<h1>dependencies</h1>
+
+<p>brew install rtmpdump libvpx libmms faac faad2</p>
+
+<p>cd "$BUILD_ROOT/gst-plugins-bad"
+./autogen.sh --noconfigure
+./configure --disable-gtk-doc --disable-debug --disable-apexsink --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+
+<p>make
+make install
+```</p>
+
+<h2>QtGStreamer</h2>
+
+<p>Deveria instalar o GCC ais recente, segundo o README</p>
+
+<p>Install QtSDK from Nokia site</p>
+
+<pre><code>brew install cmake
+
+#this will not install qt bottle
+brew install automoc4 --ingnore-dependencies --build-from-source
+
+#had problems with boost 1.48
+cd /usr/local/Library/Formula/
+git checkout 57665ff /usr/local/Library/Formula/boost.rb
+
+brew install boost
+
+cd "$BUILD_ROOT/qt-gstreamer"
+
+export PKG_CONFIG_PATH=$BUILD_TARGET/lib/pkgconfig
+export LDFLAGS="-L`brew --prefix gettext`/lib/"
+
+#pra usar o Qt SDK
+export PKG_CONFIG_PATH="$PKG_CONFIG_PATH:/Users/juniorz/QtSDK/Desktop/Qt/474/gcc/lib/pkgconfig/"
+export PATH="/Users/juniorz/QtSDK/Desktop/Qt/474/gcc/bin/:$PATH"
+
+
+mkdir build &amp;&amp; cd build
+
+#usei -DQTGSTREAMER_STATIC=ON -DQTGSTREAMER_EXAMPLES=ON
+cmake .. -DCMAKE_INSTALL_PREFIX=$BUILD_TARGET/qt
+
+# it will show a lot of warnings like
+# #warning "This version of Mac OS X is unsupported"
+make
+make install
+</code></pre>
+
+<h3>Exemplos</h3>
+
+<p>Vc pode usar o exemplo fornecido pelo qt-gstreamer, mas tem que alterar seu projeto, para compilar no QtCreator</p>
+
+<p>1) Altere o .pro</p>
+
+<p>No QtCreator
+2) Clique em Projects, Targets, Build
+Em Build Environment
+Set PKG_CONFIG_PATH to /Users/juniorz/QtSDK/Desktop/Qt/474/gcc/lib/pkgconfig:/Users/juniorz/qt-gstreamer/lib/pkgconfig</p>
+
+<p>3) CLique em Projects, Targets, Run
+Em Run Environment
+Set DYLD_LIBRARY_PATH to /Users/juniorz/qt-gstreamer/lib</p>
+
+<p>Ler:
+http://doc.trolltech.com/4.5/qmake-project-files.html#declaring-other-libraries
+http://doc.qt.nokia.com/4.7/qmake-project-files.html</p>
+]]></content>
+  </entry>
+  
+</feed>
