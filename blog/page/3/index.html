@@ -9,7 +9,7 @@
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Google Summer of Code (GSoC) é um programa que oferece a desenvolvedores estudantes estipêndios para escrever código para vários projetos opensource &hellip;">
+  <meta name="description" content="Working on my GSoC project, I noted that the generated Xtext Editor simply stopped to work. Looking at the logs I found the message:!MESSAGE Unable &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +74,45 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/15/xtext-editor-unexpectedly-stopped/">Xtext Editor unexpectedly stopped working</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-15T00:00:00-03:00" pubdate data-updated="true">May 15<span>th</span>, 2011</time>
+        
+         | <a href="/2011/05/15/xtext-editor-unexpectedly-stopped/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+Working on my GSoC project, I noted that the generated Xtext Editor simply stopped to work. Looking at the logs I found the message:<br /><blockquote>!MESSAGE Unable to create editor ID org.eclipse.amalgam.tutorials.xtext.Droid: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>And when I launched the &#8220;Eclipse Application&#8221; run configuration, the resulting Eclipse warned:<br /><blockquote>Could not open the editor: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>After some time cursing Xtext, I discovered that in order to launch the &#8220;Eclipse Application&#8221; run configuration, <b>you must to have all the generated projects opened in the package explorer</b>&nbsp;(that means both <i>.generator</i> and <i>.ui</i> projects must be open).</div>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -153,45 +192,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-04-09T00:00:00-03:00" pubdate data-updated="true">Apr 9<span>th</span>, 2011</time>
-        
-         | <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-O gerenciamento de memória em Objective-C é feito por meio de <b>contagem de referências</b>. Cada objeto possui um &#8221;<b>retain count</b>&#8221; que representa quantos <b>outros objetos estão interessados nele</b>.<br /><br />Um objeto é <b>desalocado</b> (e a memória ocupada por ele é liberada) quando <b>não há nenhum outro objeto interessado nele</b>. Para impedir que ele seja desalocado um outro objeto deve demonstrar seu interesse enviando ao objeto-alvo a mensagem <b><i>retain</i></b>. Uma vez que um objeto não tenha mais nenhum interesse no objeto-alvo ele deve notificar o objeto por meio da mensagem <b><i>release</i></b>.<br /><br /><b>Resumindo</b>: <i>um sujeito retém (retain) objetos que ele está interessado e libera (release) objetos quando ele não está mais interessado</i>.<br /><a name='more'></a><br />A <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmObjectOwnership.html%23//apple_ref/doc/uid/20000043-SW2">dinâmica da gerência de memória</a> e da coleta de lixo é feita assim:<br /><ul><li>Quando um objeto é <b>criado</b> o retain count = 1 (quem criou está interessado nele, senão não teria criado =D).</li><li>Quando um objeto recebe uma mensagem <b><i>retain</i></b> o seu <i>retain count</i> é <b>incrementado</b> em 1 (o invocador da mensagem é mais um objeto interessado nele).</li><li>Quando um objeto recebe uma mensagem <b><i>release</i></b> o seu <i>retain count</i> é <b>decrementado</b> em 1 (o invocador da mensagem não está mais interessado nele).</li><li>Quando um objeto recebe uma mensagem <b><i>autorelease</i></b> o seu <i>retain count</i> <b>será decrementado</b> em 1 num futuro próximo (o invocador da mensagem não estará interessado no objeto depois do escopo atual). Para isso será utilizado um <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmAutoreleasePools.html%23//apple_ref/doc/uid/20000047-CJBFBEDI">Autorelease Pool</a>.</li><li>Quando um objeto tem seu <i>retain count</i> reduzido a <b>0 (zero)</b> ele será <b>desalocado</b>.</li></ul>Quando um objeto <b>incrementa</b> o <i>retain count</i> de outro objeto (por meio da mensagem <i>retain</i>, por exemplo) ele é responsável por esse retain. Na terminologia do Objective-C esse objeto (<i><b>owner</b></i>) passa a ter posse (<i><b>ownership</b></i>) sobre o outro objeto. Essa posse só é revogada quando o <i>owner</i> <b>decrementa</b> o <i>retain count</i> do objeto possuído (por meio das mensagens <i>release</i> ou <i>autorelease</i>).<br /><br />Um objeto toma posse de outro quando:<br /><ul><li><b>Cria o objeto</b> - usando mensagens que o nome comece com &#8221;<i>alloc</i>&#8221;, &#8221;<i>new</i>&#8221;, &#8221;<i>copy</i>&#8221;, &#8221;<i>mutableCopy</i>&#8221;</li><li><b>Retém o objeto</b> - enviando a mensagem &#8221;<i>retain</i>&#8221;</li></ul><br />Com base nesses conceitos a <a href="http://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/MemoryMgmt/Articles/mmRules.html#//apple_ref/doc/uid/20000994-BAJHFBGH">regra da gerência de memória</a> para as aplicações é:<br /><blockquote><b>Teorema</b>: Você só deve liberar (<i>release</i>) objetos que você possua (<i>ownership</i>).</blockquote><blockquote><b>Corolário</b>: Se você precisa armazenar um objeto recebido, você deve tomar posse dele. Geralmente você delega essa responsabilidade aos métodos accessors (<i>@property</i>/<i>@synthetize</i>).</blockquote><b>TODO</b>: Falar sobre Autorelease Pools e Copy.<br /><br /><b>Disclaimer</b>: Todas essas informações foram retiradas do <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/MemoryMgmt/MemoryMgmt.html">Memory Management Programming Guide</a> e não tem como objetivo ser uma tradução desse guia. Esse documento é apenas um resumo de um estudo pessoal.</div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/4/">&larr; Older</a>
@@ -221,6 +221,10 @@ O gerenciamento de memória em Objective-C é feito por meio de <b>contagem de r
       </li>
     
       <li class="post">
+        <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/07/04/playing-with-droid/">Playing with Droid</a>
       </li>
     
@@ -242,10 +246,6 @@ O gerenciamento de memória em Objective-C é feito por meio de <b>contagem de r
     
       <li class="post">
         <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/04/05/proposta-para-o-google-summer-of-code/">Proposta para o Google Summer of Code 2011</a>
       </li>
     
   </ul>

@@ -9,7 +9,7 @@
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m proud to announce that it is working!Since the last blog post, the DSL &hellip;">
+  <meta name="description" content="Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -74,6 +74,110 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-07-11T00:00:00-03:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
+        
+         | <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.</p>
+
+<h2>Configurando o servidor</h2>
+
+<p>No servidor, crie um usuário que será utilizado para realizar o deploy. Eu utilizei uma senha gerada aleatóriamente (um MD5 de um arquivo, por exemplo). Em seguida, adicionei minha chave privada (a que eu uso para acessar meus repositórios no Github) ao arquivo <code>authorized_keys</code> do usuário de <code>deploy</code>.</p>
+
+<p><strong>Na máquina local</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='console'><span class='line'><span class="go">scp ~/.ssh/id_rsa.pub reinaldo@servidor:/home/reinaldo/my_key.pub</span>
+</span><span class='line'><span class="go">ssh reinaldo@servidor</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><strong>No servidor</strong></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='console'><span class='line'><span class="go">sudo adduser deploy</span>
+</span><span class='line'><span class="go">MY_PUBLIC_KEY=/home/reinaldo/my_key.pub</span>
+</span><span class='line'><span class="go">sudo mkdir -p /home/deploy/.ssh</span>
+</span><span class='line'><span class="go">sudo cat $MY_PUBLIC_KEY &gt;&gt; /home/deploy/.ssh/authorized_keys &amp;&amp; rm $MY_PUBLIC_KEY</span>
+</span><span class='line'><span class="go">sudo chmod 600 /home/deploy/.ssh/authorized_keys</span>
+</span><span class='line'><span class="go">sudo chmod 700 /home/deploy/.ssh</span>
+</span><span class='line'><span class="go">sudo chown deploy:deploy -R /home/deploy</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Configurando a aplicação</h2>
+
+<p>Adicione a gem capistrano no seu <em>Gemfile</em></p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">gem</span> <span class="s1">&#39;capistrano&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Em seguida, no diretório da aplicação</p>
+
+<figure class='code'><figcaption><span>&#8220;Capistrando&#8221; a aplicação  </span></figcaption>
+ <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='console'><span class='line'><span class="go">bundle install</span>
+</span><span class='line'><span class="go">capify .</span>
+</span><span class='line'><span class="go">echo &quot;.bundle\n&quot; &gt;&gt; .gitignore</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Isso vai criar o arquivo <em>config/deploy.rb</em> onde serão armazenadas as configurações de deploy, bem como as tasks.</p>
+
+<p>Meu arquivo ficou assim:</p>
+
+<script src="https://gist.github.com/1076956.js"> </script>
+
+
+<p>Pra finalizar, você precisa criar os diretórios no servidor. Para isso simplesmente execute (no diretorio da aplicação) <code>cap deploy:setup</code>.</p>
+
+<h2>Realizando o Deploy</h2>
+
+<p>Depois disso, você poderá realizar seu deploy automático executando o comando: <code>cap deploy</code>.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -153,45 +257,6 @@ The first part of <a href="http://www.google-melange.com/gsoc/project/google/gso
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/05/15/xtext-editor-unexpectedly-stopped/">Xtext Editor unexpectedly stopped working</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-15T00:00:00-03:00" pubdate data-updated="true">May 15<span>th</span>, 2011</time>
-        
-         | <a href="/2011/05/15/xtext-editor-unexpectedly-stopped/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Working on my GSoC project, I noted that the generated Xtext Editor simply stopped to work. Looking at the logs I found the message:<br /><blockquote>!MESSAGE Unable to create editor ID org.eclipse.amalgam.tutorials.xtext.Droid: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>And when I launched the &#8220;Eclipse Application&#8221; run configuration, the resulting Eclipse warned:<br /><blockquote>Could not open the editor: No editor descriptor for id org.eclipse.amalgam.tutorials.xtext.Droid</blockquote>After some time cursing Xtext, I discovered that in order to launch the &#8220;Eclipse Application&#8221; run configuration, <b>you must to have all the generated projects opened in the package explorer</b>&nbsp;(that means both <i>.generator</i> and <i>.ui</i> projects must be open).</div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/3/">&larr; Older</a>
@@ -221,6 +286,10 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
       </li>
     
       <li class="post">
+        <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a>
+      </li>
+    
+      <li class="post">
         <a href="/2011/07/04/playing-with-droid/">Playing with Droid</a>
       </li>
     
@@ -242,10 +311,6 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
     
       <li class="post">
         <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/04/05/proposta-para-o-google-summer-of-code/">Proposta para o Google Summer of Code 2011</a>
       </li>
     
   </ul>

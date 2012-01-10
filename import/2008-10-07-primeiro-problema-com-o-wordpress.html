@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: cocoa - Reinaldo Junior</title>
+  <title><!--:pt-->Primeiro problema com o WordPress<!--:--> - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: cocoa">
+  <meta name="description" content="Ao começar a postar (e navegar) no blog, percebi um problema: mesmo estando com o pacote de idioma do WordPress em Português Brasileliro (pt_BR), &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/cocoa">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/import/2008-10-07-primeiro-problema-com-o-wordpress.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +73,116 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: cocoa</h1>
+    
+      <h1 class="entry-title"><!--:pt-->Primeiro problema com o WordPress<!--:--></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-07T13:46:19-03:00" pubdate data-updated="true">Oct 7<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a></h1>
-<time datetime="2011-04-09T00:00:00-03:00" pubdate><span class='month'>Apr</span> <span class='day'>09</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/memoria/'>memoria</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
+<div class="entry-content"><!--:pt-->
 
 
-</article>
+<p>Ao começar a postar (e navegar) no blog, percebi um problema: mesmo estando com o pacote de idioma do WordPress em Português Brasileliro (pt_BR), ainda assim, alguns textos continuavam em inglês, como: &#8220;Read the rest of this entry »&#8221;&#8230;</p>
 
+<p>Então, eu fui <a href="http://www.google.com.br">pesquisar</a>&#8230;<!--:--><!--more--><!--:pt--></p>
+
+<p>A primeira coisa que procurei foi algum plugin para o WordPress, que me permitisse alterar os arquivos de idioma sem ter muito trabalho (mais ou menos inspirado no recurso que o <a href="http://www.magentocommerce.com/">Magento</a> tem de &#8220;Inline Translation&#8221;). Encontrei o <a href="http://wordpress.org/extend/plugins/codestyling-localization/">Codestyling Localization</a> que me ajudou a dar uma olhada nos arquivos de tradução do WordPress&#8230;</p>
+
+<p>Adorei o plugin, muito útil, bem intuitivo, faz até um <em>scan</em> pra varrer os arquivos do WP procurando por strings &#8220;traduzíveis&#8221; e gerar um arquivo que servirá de base pra sua tradução. Tudo automaticamente. Se não fosse alguns probleminhas processando arquivos muito grandes à procura de string traduzíveis, ele seria 100%. Depois de muito procurar nos arquivos disponíveis percebi que todos os que seriam importantes estão traduzidos, <strong>inclusive</strong> o <em>&#8220;Read the rest of this entry »&#8221;</em>!</p>
+
+<p>Então porque a droga da traduçã não está aparecendo?</p>
+
+<p>Fui pesquisar um pouquinho mais e achei uma página no WP Codex falando um pouco sobre o <a href="http://codex.wordpress.org/User:Nbachiyski/I18n_for_WordPress_Developers">sistema do WP</a> de <a href="http://en.wikipedia.org/wiki/Internationalization">i18n</a>. Lendo um pouco descobri o que já desconfiava: o WP realmente usa a biblioteca <a href="http://en.wikipedia.org/wiki/Gettext">gettext</a> e suas ferramentas para dar a infra-estrutura para a internacionalização. Lendo um pouco mais descobri ainda que se pode separar a tradução por grupos, o que eles chamam de domínios, e que eles de fato o fazem no desenvolvimento oficial do WP. Assim sendo descobri que <strong>o tema padrão do WP</strong> (onde as coisas aparecem traduzidas) <strong>usa um domínio</strong> chamado <em>&#8216;kubrick&#8217;</em>.</p>
+
+<p>Um pouco mais adiante na mesma página, há informações de <a href="http://codex.wordpress.org/User:Nbachiyski/I18n_for_WordPress_Developers#Choosing_and_loading_a_domain">como escolher e carregar um domínio</a> para o seu arquivo. Então percebi que o <a href="http://deniart.ru/">tema que estou usando</a> no blog não carregava nenhum domínio. Atá aí tudo bem, pois - pelo que entendo - nesse caso ele deveria carregar as strings traduzidas dentro do domínio padrão (o geral do WP). Mas por via das dúvidas, coloquei nele o mesmo domínio do tema padrão (&#8216;kubrick&#8217;) pra ver o que dava&#8230;</p>
+
+<p>Pela próprio gerenciador do WP editei o tema (<em>Design &gt; Editor de Temas &gt; Funções do Tema (functions.php)</em> ) e adicionei a linha</p>
+
+<pre lang="php">load_theme_textdomain('kubrick');</pre>
+
+
+<p>Pra minha surpresa, não aconteceu nada de diferente&#8230; Então fui dar mais uma olhada no texto do Codex e foi então <a href="http://codex.wordpress.org/User:Nbachiyski/I18n_for_WordPress_Developers#Marking_strings_in_themes_and_plugins">que eu lí:</a></p>
+
+<blockquote>The additional rule states that <strong>you must add your domain as an argument to every __, _e, _c and __ngettext call</strong>, otherwise <strong>your translations won&#8217;t work</strong>.</blockquote>
+
+
+<p>Foi então que eu me dei conta de que não estava traduzindo, porque o tema havia sido feito errado!
+Eles não pensaram (ou apenas não sabiam) sobre os recursos de localização do WP (isso que dá deixar designers se aventurarem como programadores).</p>
+
+<p>Próximo passo: revisar todo o tema e corrigir isso!<!--:--></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-07T13:46:19-03:00" pubdate data-updated="true">Oct 7<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/import/2008-10-07-primeiro-problema-com-o-wordpress.html" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/import/2008-10-07-primeiro-problema-com-o-wordpress.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

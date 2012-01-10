@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: cocoa - Reinaldo Junior</title>
+  <title><!--:pt-->Protegendo o WordPress um pouco<!--:--> - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: cocoa">
+  <meta name="description" content="Hoje por acaso, olhando as configurações do WP ví duas opções que me intrigaram um pouco: [caption id=&#8221;attachment_23&#8221; align=&#8221; &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/cocoa">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/import/2008-10-08-protegendo-o-wordpress-um-pouco.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +73,118 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: cocoa</h1>
+    
+      <h1 class="entry-title"><!--:pt-->Protegendo o WordPress um pouco<!--:--></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-08T11:19:48-03:00" pubdate data-updated="true">Oct 8<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a></h1>
-<time datetime="2011-04-09T00:00:00-03:00" pubdate><span class='month'>Apr</span> <span class='day'>09</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/memoria/'>memoria</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
+<div class="entry-content"><!--:pt-->
 
 
-</article>
+<p>Hoje por acaso, olhando as <a href="http://codex.wordpress.org/Administration_Panels#Options_-_Configuration_Settings">configurações</a><strong> </strong>do WP ví duas opções que me intrigaram um pouco:</p>
 
+<p>[caption id=&#8221;attachment_23&#8221; align=&#8221;aligncenter&#8221; width=&#8221;500&#8221; caption=&#8221;Pra quê tem dois endereços para o WP? Deve ter algo legal nisso&#8230;&#8221;]<img class="size-full wp-image-23" src="http://reinaldojunior.net/wordpress-core/wp-content/uploads/2008/10/protegendo-o-wordpress-011.png" alt="Pra quê tem dois endereços para o WP? Deve ter algo legal nisso..." width="500" height="130" />[/caption]</p>
+
+<p>Então dei uma pesquisada e achei um artigo sobre <a href="http://codex.wordpress.org/Giving_WordPress_Its_Own_Directory">como mudar o diretório do WP</a> e, motivado pelo ocorrido com o <a href="http://almirmendes.net">m3nd3s</a> (<a href="http://www.almirmendes.net/?p=3">detonaram</a> o blog dele - tadinho), veio a idéia de renomear o diretório do WP pra dar mais segurança, me livrando de problemas com futuros <a href="http://pt.wikipedia.org/wiki/Robin_(DC_Comics)">garotos-prodígios</a> <a href="http://pt.wikipedia.org/wiki/Script_kiddie">espertalhões</a>.<!--:--><!--more--><!--:pt--></p>
+
+<p>Até o momento eu estava com o WP instalado em <strong>http://www.reinaldojunior.net/wordpress/</strong>. Então, resolvi ao mesmo tempo: (1) mudar o diretório do WP (pois é muito óbvio pra alguem que tá tentando hackear, tentar em <em>/wordpress</em>, <em>/wp</em>, <em>/blog</em>, etc) e (2) mudar o endereço de acesso para o meu blog (pra ficar mais bonitinho). Para não revelar o segredo, vamos assumir que para (1) eu iria mover o diretorio <strong><em>/wordpress</em></strong> para <em><strong>/apps/wordpress</strong></em> e para (2) eu iria mudar o endereço de <strong><em>http://reinaldojunior.net/wordpress</em></strong> para <strong><em>http://reinaldojunior.net </em></strong> - que foi o que realmente aconteceu.</p>
+
+<p>Entao eu fiz:</p>
+
+<ol>
+    <li>Alterei os valores dessas opções. Em <em>Endereço do WordPress</em> eu coloquei a URL de como ficaria depois que eu renomeasse o meu diretório do WP atual (<strong>http://reinaldojunior.net/apps/wordpress</strong>). E em <em>Endereço do Blog</em> eu coloquei o novo endereço inicial para o meu blog (<strong>http://reinaldojunior.net</strong>). Salvei as alterações (ignorando qualquer mensagem de erro).</li>
+    <li>Em seguida (e só em seguida) movi os arquivos de <strong>/wordpress</strong> para <strong>/apps/wordpress</strong> (ou se você nao vai mover, só renomeia).</li>
+    <li>Copiei os arquivos <strong>index.php</strong> e <strong>.htaccess</strong> (do diretório <em>/apps/wordpress</em>) para o diretório que seria o novo endereço do blog (no caso, o diretório raiz - <strong>/</strong>).</li>
+    <li>Editei a ultima linha do arquivo <strong>index.php</strong> para que ele apontasse para o novo diretório do meu WP (ficando assim)
+<pre lang="php">/** Loads the WordPress Environment and Template */
+require('./apps/wordpress/wp-blog-header.php');</pre>
+</li>
+    <li>Como eu uso <a href="http://codex.wordpress.org/Using_Permalinks">Links Permanentes</a>, fui até o painel de opções para esse item e simplesmente mandei salvar a salterações (isso é importante porque senão seu site não vai funcionar).</li>
+</ol>
+
+
+<p>Depois disso, tava tudo beleza, até que tentei fazer esse post e ví que o upload de imagens não estava funcionando. Então, descobri que tem um passo a mais:</p>
+
+<ol>
+    <li>Fui em <a href="http://codex.wordpress.org/Administration_Panels#Miscellaneous">Configurações Diversas</a> e alterei o valor da configuração <em>Armazenar arquivos enviados nesta pasta</em> e apontei-a para o novo diretório do WP (<strong>/apps/wordpress</strong>). Lembre-se que tem que ser o caminho absoluto ;-)</li>
+</ol>
+
+
+<p>Pronto! Agora eu tenho meu com uma proteção bem simples.<!--:--></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-10-08T11:19:48-03:00" pubdate data-updated="true">Oct 8<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/import/2008-10-08-protegendo-o-wordpress-um-pouco.html" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/import/2008-10-08-protegendo-o-wordpress-um-pouco.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: cocoa - Reinaldo Junior</title>
+  <title><!--:pt-->Instalando o JBoss manualmente no Ubuntu 8.10<!--:--> - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: cocoa">
+  <meta name="description" content="Depois de instalar o Ubuntu 8.10, comecei a configurá-lo como meu ambiente de desenvolvimento padrão (e quem sabe eletambém  não se torna meu &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/cocoa">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/import/2009-03-03-instalando-o-jboss-manualmente-no-ubuntu-810.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +73,164 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: cocoa</h1>
+    
+      <h1 class="entry-title"><!--:pt-->Instalando o JBoss manualmente no Ubuntu 8.10<!--:--></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-03T10:35:29-03:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2009</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a></h1>
-<time datetime="2011-04-09T00:00:00-03:00" pubdate><span class='month'>Apr</span> <span class='day'>09</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/memoria/'>memoria</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
+<div class="entry-content"><!--:pt-->
 
 
-</article>
+<p>Depois de instalar o Ubuntu 8.10, comecei a configurá-lo como meu ambiente de desenvolvimento padrão (e quem sabe eletambém  não se torna meu desktop padrão?). Nesse post vou descrever como instalei o JBoss.</p>
 
+<p>Primeiro, eu tentei instalar via <strong>apt-get</strong> e não deu certo, pois o pacote <strong>jbossas4</strong> não é o servidor de aplicações (segundo o arquivo <em>/usr/share/doc/jbossas4/README.Debian</em>). Então, fui para a instalação manual.<!--:--><!--more--><!--:pt--></p>
+
+<p>1) Pré-requisitos: Você precisa ter o Sun Java instalado, tanto JRE quanto JDK</p>
+
+<pre lang="bash">apt-get install sun-java6-jre sun-java6-jdk</pre>
+
+
+<p>1) Faça o download do JBoss em</p>
+
+<p>No meu caso, eu precisava da implementação J2EE versão 1.4 então <a href="http://java.sun.com/j2ee/compatibility_1.4.html">descobri</a> que eu precisaria da versão 4.x do JBoss. No seu caso utilize a versão que você precisar. Salve o arquivo no seu diretorio home (~).</p>
+
+<p>2) Crie um usuário para o JBoss</p>
+
+<pre lang="bash">sudo useradd -d /usr/local/jboss -s /bin/sh jboss
+sudo chown jboss:jboss /usr/local/jboss</pre>
+
+
+<p>3) Instalar o JBoss</p>
+
+<pre lang="bash">cd ~
+unzip jboss-4.2.3.GA-jdk6.zip
+sudo mv jboss-4.2.3.GA /usr/local/jboss
+sudo chown -R jboss:jboss /usr/local/jboss</pre>
+
+
+<p>5) Definir variáveis de ambiente</p>
+
+<p>Criar o arquivo <strong>/etc/profile.d/java-6-sun.sh</strong> com o seguinte conteúdo:</p>
+
+<pre lang="bash">#!/bin/sh
+JAVA_HOME="/usr/lib/jvm/java-6-sun"
+export JDK_HOME="${JAVA_HOME}"
+export PATH="${JAVA_HOME}/bin:${PATH}"</pre>
+
+
+<p>Depois torne ele executável</p>
+
+<pre lang="bash">sudo chwon root:root /etc/profile.d/java-6-sun.sh
+sudo chmod ug+x /etc/profile.d/java-6-sun.sh</pre>
+
+
+<p>6) Configurar o JBoss como um serviço</p>
+
+<p>Faça download do <a href="http://chiralsoftware.com/linux-system-administration/jboss-deployment/jboss-init.sh">script INIT</a> para o diretório home (~).</p>
+
+<pre lang="bash">cd ~
+sudo cp jboss-init.sh /etc/init.d/jboss
+sudo chown root:root /etc/init.d/jboss
+sudo chmod ug+x /etc/init.d/jboss
+sudo update-rc.d jboss defaults</pre>
+
+
+<p>Pronto! Agora é só iniciar o servidor com</p>
+
+<pre lang="bash">sudo /etc/init.d/jboss start</pre>
+
+
+<p>E parar o servidor com</p>
+
+<pre lang="bash">sudo /etc/init.d/jboss stop</pre>
+
+
+<p>Você também pode iniciar o servidor com</p>
+
+<pre lang="bash">sudo jboss /usr/local/jboss/bin/run.sh</pre>
+
+
+<p><strong>Mais informações e formas alternativas em</strong></p>
+
+<p>http://chiralsoftware.com/linux-system-administration/jboss-server-deployment.seam</p>
+
+<p>http://ubuntuforums.org/showthread.php?p=4031613</p>
+
+<p>http://it.megocollector.com/index.php?p=629<!--:--></p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2009-03-03T10:35:29-03:00" pubdate data-updated="true">Mar 3<span>rd</span>, 2009</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/import/2009-03-03-instalando-o-jboss-manualmente-no-ubuntu-810.html" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/import/2009-03-03-instalando-o-jboss-manualmente-no-ubuntu-810.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>

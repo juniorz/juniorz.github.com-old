@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: cocoa - Reinaldo Junior</title>
+  <title><!--:pt-->Controle de VersÃ£o, GIT, Ruby, Yahoo! e PHP<!--:--> - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: cocoa">
+  <meta name="description" content="Finalmente com algum tempo livre, resolvi por em prática o que havia planejado e expandir meus conhecimentos.
+Sobre sistemas de controle de versão &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/cocoa">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/import/2008-11-20-controle-de-versao-git-ruby-yahoo-e-php.html">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -73,35 +74,127 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: cocoa</h1>
+    
+      <h1 class="entry-title"><!--:pt-->Controle de VersÃ£o, GIT, Ruby, Yahoo! e PHP<!--:--></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-20T22:26:39-02:00" pubdate data-updated="true">Nov 20<span>th</span>, 2008</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
-
-  
-  <h2>2011</h2>
-
-<article>
-  
-<h1><a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a></h1>
-<time datetime="2011-04-09T00:00:00-03:00" pubdate><span class='month'>Apr</span> <span class='day'>09</span> <span class='year'>2011</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/cocoa/'>cocoa</a>, <a class='category' href='/blog/categories/memoria/'>memoria</a>, <a class='category' href='/blog/categories/objective-c/'>objective-c</a></span>
-</footer>
+<div class="entry-content"><!--:pt-->
 
 
-</article>
+<p>Finalmente com algum tempo livre, resolvi por em prática o que havia <a href="http://reinaldojunior.net/2008/11/upgrade-pessoal/">planejado</a> e expandir meus conhecimentos.
+Sobre <a href="http://pt.wikipedia.org/wiki/Sistema_de_controle_de_vers%C3%83%C2%A3o">sistemas de controle de versão</a> aprendi que eles:</p>
+
+<ul>
+    <li>Têm como principal objetivo possibilitar o <strong>gerenciamento</strong> de <span style="text-decoration: underline;">versões diferentes</span> de arquivos de maneira organizada e sistemática.</li>
+    <li><strong>Aceleram</strong> o <span style="text-decoration: underline;">desenvolvimento em equipe</span>, minimizando problemas decorrentes de edições simultâneas e mediando conflitos entre alterações.</li>
+    <li><strong>Diferem</strong> entre sí, e a escolha de qual sistema (<a href="http://www.nongnu.org/cvs">CVS</a>, <a href="http://subversion.tigris.org/">Subversion</a>, <a href="http://git-scm.com/">GIT</a>, <a href="http://www.selenic.com/mercurial/">Mercurial</a>, <a href="http://bazaar-vcs.org/">Bazaar</a>, etc) <span style="text-decoration: underline;">depende</span> do propósito de usá-lo, do projeto em questão, de filosofias de trabalho, etc.</li>
+    <li>Naturalmente, <strong>exigem</strong> uma <span style="text-decoration: underline;">mudança de metodologia</span> para o desenvolvimento.</li>
+</ul>
+
+
+<p>Após uma pesquisada em geral sobre os diferentes sistemas, o GIT me chamou a atenção por algumas características (obrigado <a href="http://www.arthurgeek.net/">Arthur Zapparoli</a> pela vídeo-<a href="http://www.arthurgeek.net/palestra-sobre-git-no-treina-tom/">palestra</a> no <a href="http://www.treinatom.com.br/pt/cafe-com-o-tom">Treina TOM</a>):</p>
+
+<ol>
+    <li><strong>Repositórios distribuídos</strong> - todas as <em>working copy</em> são ao mesmo tempo repositórios completos, e o repositório central é questão de <span style="text-decoration: underline;">convenção</span>. Isso dá a oportunidade de trabalhar offline como se o repositório estivesse na sua máquina e depois fazer um merge com o repositório principal. Quer dizer que eu posso continaur trabalhando mesmo sem internet, se o repositório deu problema, se eu estou com um notebook dentro de um ônibus, não faz diferença.</li>
+    <li><strong>Performance</strong> - como cada cópia local é um repositório, tudo é feito na sua cópia local.</li>
+    <li><strong>Facilidade para criar <em>branches</em></strong> - sempre ouvi dizer que criar branches em outros sistemas (como o Subversion) é algo bem chato e custoso. No GIT, esse recurso é o centro do sistema e possibilida fazer <em>merges</em> de <em>branches</em>. Isso faz com que sua filosofia de desenvolvimento seja mais modularizada, como criar um novo <em>branch</em> para cada recurso que se vai adicionar ao projeto.</li>
+</ol>
+
+
+<p>Toda essa história me deixou (ainda mais) curioso para dar uma fuçada em Ruby (e Rails), além de procurar soluções de deployment para PHP. Adquirir <a href="http://www.brasport.com.br/index.php?Escolha=8&amp;Livro=L00209">um livro sobre Rails</a> já é algo em mente.
+Também, hoje descobri <a href="http://public.yahoo.com/%7Eradwin/talks/php-at-yahoo-zend2005.pdf">porquê o Yahoo! escolheu usar PHP</a> entre tantas outras linguagens (como Java, ASP, Perl, Python e CouldFusion):</p>
+
+<ul>
+    <li>Projetada para WEB</li>
+    <li>Alta Performance</li>
+    <li>Grande Comunidade OpenSource (e boa documentação)</li>
+    <li>Paradigma &#8220;Código-no-HTML&#8221;</li>
+    <li>Extensibilidade (bibliotecas)</li>
+</ul>
+
+
+<p>foram os principais motivos citados.</p>
+
+<p class="scribefire-powered">Powered by <a href="http://www.scribefire.com/">ScribeFire</a>.</p>
+
+
+<!--:-->
 
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2008-11-20T22:26:39-02:00" pubdate data-updated="true">Nov 20<span>th</span>, 2008</time>
+      
+
+<span class="categories">
+  
+    Liquid error: undefined method `sort!' for nil:NilClass
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/import/2008-11-20-controle-de-versao-git-ruby-yahoo-e-php.html" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/import/2008-11-20-controle-de-versao-git-ruby-yahoo-e-php.html" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+      
+    </p>
+  </footer>
 </article>
 
 </div>
