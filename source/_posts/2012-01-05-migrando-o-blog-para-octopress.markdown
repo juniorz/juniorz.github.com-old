@@ -3,7 +3,7 @@ layout: post
 title: "Migrando o blog para Octopress"
 date: 2012-01-05 10:34
 comments: true
-categories: 
+categories:
 ---
 
 O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo.
