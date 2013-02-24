@@ -9,6 +9,22 @@ author: Reinaldo Junior
 simple_search: http://google.com/search
 description:
 
+octoprose:
+  editor: http://prose.io
+  github_repo: juniorz/juniorz.github.com
+  github_branch: source
+
+#prose.io settings
+prose:
+  rooturl: source
+  metadata:
+    "source/_posts": |
+      layout: post
+      title: Title
+      comments: true
+      published: true
+      categories:
+
 # Default date format is "ordinal" (resulting in "July 22nd 2007")
 # You can customize the format as defined in
 # http://www.ruby-doc.org/core-1.9.2/Time.html#method-i-strftime
