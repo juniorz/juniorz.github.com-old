@@ -169,9 +169,21 @@ The first part of <a href="http://www.google-melange.com/gsoc/project/google/gso
 
 <aside class="sidebar">
   
-    <section>
+    <link href="http://blossom.github.com/contributors/example/contributors.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://blossom.github.com/contributors/lib/contributors.min.js"> </script>
+
+<div id="blog-contributors"></div>
+<script type="text/javascript">
+  contributors.generate('brunch', 'brunch',
+  { placeholder: 'blog-contributors'});
+</script>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
+      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -207,10 +219,6 @@ The first part of <a href="http://www.google-melange.com/gsoc/project/google/gso
     
       <li class="post">
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
       </li>
     
   </ul>

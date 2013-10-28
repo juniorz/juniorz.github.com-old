@@ -2,7 +2,7 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://blog.reinaldojunior.net/2011/03/18/kindle-muito-mais-que-apenas-ler/</loc>
-        <lastmod>2013-02-24T18:44:23-03:00</lastmod>
+        <lastmod>2013-03-05T18:30:08-03:00</lastmod>
     </url>
     <url>
         <loc>
@@ -59,11 +59,15 @@
         <lastmod>2013-02-24T18:44:23-03:00</lastmod>
     </url>
     <url>
+        <loc>http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/</loc>
+        <lastmod>2013-03-07T12:07:04-03:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.reinaldojunior.net/blog/archives/</loc>
-        <lastmod>2013-02-24T18:44:23-03:00</lastmod>
+        <lastmod>2013-03-07T12:07:04-03:00</lastmod>
     </url>
     <url>
         <loc>http://blog.reinaldojunior.net/</loc>
-        <lastmod>2013-02-24T18:44:23-03:00</lastmod>
+        <lastmod>2013-03-07T12:07:04-03:00</lastmod>
     </url>
 </urlset>

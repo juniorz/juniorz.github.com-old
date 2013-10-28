@@ -9,7 +9,8 @@
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="O Ano novo sempre traz a intenção (promessa) de fazer melhor. E para manter a tradição: ano novo, blog novo. Histórico Já usei o WordPress, tanto &hellip;">
+  <meta name="description" content="Disclaimer: this blog post is a DRAFT Objective Create a custom (and minimal) Centos 5.x instance store-backed AMI with
+a traditional Amazon AKI/AMI &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -76,6 +77,140 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T17:46:00-03:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+        
+
+        
+         | <a href="/2013/03/05/creating-your-own-ami/#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><strong>Disclaimer: this blog post is a DRAFT</strong></p>
+
+<h2>Objective</h2>
+
+<p>Create a custom (and minimal) Centos 5.x instance store-backed AMI with
+a traditional Amazon AKI/AMI (no PVGrub).</p>
+
+<h2>Context</h2>
+
+<p>In order to launch a new machine, a user must choose a specific AMI (Amazon
+Machine Image).</p>
+
+<p>An AMI contains all information necessary to boot an Amazon EC2 instance with
+your software. An AMI is like a template of a computer&#8217;s root volume.</p>
+
+<p>Even though there is a lot of AMIs available (both publicly and privately),
+often you just can&#8217;t find any that fits your needs (or you just can&#8217;t
+trust what is shipped with the AMI).</p>
+
+<p>Therefore, Amazon provides a way of creating (and distributing) your own AMIs,
+giving you full control of what should be installed and running in your instance.</p>
+
+<h2>Background</h2>
+
+<p>In order to create a custom AMI you have to know a little about how it
+work, what are the options available to be chosen and how to do it.</p>
+
+<h3>The boot proccess</h3>
+
+<p>Amazon EC2 is built on a Xen-based solution.
+In order to launch a virtual machine (instance in EC2 nomenclature, domU in Xen
+nomenclature) the Xen hypervisor needs some information about how to find the
+proper kernel to boot, how to load it, and so on. This information is provided
+by a set of shared files available in the EC2 infrastructure:</p>
+
+<ul>
+<li><p>An AKI (Amazon Kernel Image) is the Xen guest paravirtualized kernel used by an AMI.<br/>
+It represents the <a href="http://en.wikipedia.org/wiki/Vmlinux">vmlinuz</a> portion of the kernel. It is basically the compiled
+kernel that gets loaded on boot.</p></li>
+<li><p>An ARI (Amazon Ramdisk Image) is the Xen guest paravirtualized ramdisk used by an AMI.<br/>
+It represents the <a href="http://en.wikipedia.org/wiki/Initrd">initrd</a>/initramfs. It is the ramdisk that gets loaded with
+the kernel and has the initial driver modules for the kernel to find the root
+filesystem.</p></li>
+</ul>
+
+
+<p>When an AMI is built, it is designed for a specific AKI (and ARI).
+Regarding the boot proccess, there are two ways of building an AMI:</p>
+
+<ol>
+<li>Using an AKI (and a corresponding ARI)</li>
+<li>Using a PVGrub-based AKI (and no ARI)</li>
+</ol>
+
+
+<p>In the beginning of EC2, the only way to build an AMI was to use an AKI
+(and a matching ARI) to boot the instance.</p>
+
+<p>As from (date missing), EC2 started to support the use of PVGrub-based AKIs.
+These AKIs simulate grub as the kernel and allow you to install your kernel on the
+AMI and have it perform similar to bare-metal system where it reads the kernel
+and ramdisk from the filesystem. These PVGrub AKIs do not use ARIs.</p>
+
+<h3>Other AMI characteristics</h3>
+
+<p>Besides the boot-specific setting you must craft your AMI according to the following characteristics:</p>
+
+<p><strong>Root device volume</strong><br/>
+Can be either <code>instance store</code> or <code>ebs</code>.
+An <code>instance store</code> AMI can only launch <em>instance store-backed</em> instances
+and an <code>ebs</code> AMI can only launch <em>ebs-backed</em> instances.</p>
+
+<p><strong>Architecture</strong><br/>
+Can be either <code>i386</code> (32-bits) or <code>x86_64</code> (64-bits).</p>
+
+<h2>Building the AMI</h2>
+
+<p>1) Launch a host instance on EC2
+  - It will be easier and faster
+2) Install the basic tollset
+3) Get the kernel module matching the AKI/ARI
+4) Install basic stuff
+5) Bundle and publish</p>
+
+<h3>Resources on the interwebs</h3>
+
+<p>https://forums.aws.amazon.com/message.jspa?messageID=256534
+https://help.ubuntu.com/community/EC2FAQ
+http://openfoo.org/blog/amazon_ec2_underlying_architecture.html</p>
+
+<p>http://en.wikipedia.org/wiki/Xen
+http://en.wikipedia.org/wiki/Hypervisor</p>
+
+<p>http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html
+http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -379,45 +514,6 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-11T00:00:00-03:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
-        
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.<br /><br /><h2>Configurando o servidor</h2>No servidor, crie um usuário que será utilizado para realizar o deploy. Eu utilizei uma senha gerada aleatóriamente (um MD5 de um arquivo, por exemplo). Em seguida, adicionei minha chave privada (a que eu uso para acessar meus repositórios no Github) ao arquivo authorized_keys do usuário de deploy.<br /><br /><b>Na máquina local</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />scp ~/.ssh/id_rsa.pub reinaldo@servidor:/home/reinaldo/my_key.pub<br />ssh reinaldo@servidor<br /></span><br /><br /><b>No servidor</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />sudo adduser deploy<br />MY_PUBLIC_KEY=/home/reinaldo/my_key.pub<br />sudo mkdir -p /home/deploy/.ssh<br />sudo cat $MY_PUBLIC_KEY&nbsp;&gt;&gt; /home/deploy/.ssh/authorized_keys &amp;&amp; rm&nbsp;$MY_PUBLIC_KEY<br />sudo chmod 600 /home/deploy/.ssh/authorized_keys<br />sudo chmod 700 /home/deploy/.ssh<br />sudo chown deploy:deploy -R /home/deploy</span><br /><br /><h2>Configurando a aplicação</h2>Adicione a gem capistrano no seu <b>Gemfile</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">gem &#8216;capistrano&#8217;</span><br /><br />Em seguida, no diretório da aplicação<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />bundle install<br />capify .<br />echo &#8220;.bundle\n&#8221; &gt;&gt; .gitignore<br /></span><br /><br />Isso vai criar o arquivo <b>config/deploy.rb</b> onde serão armazenadas as configurações de deploy, bem como as tasks.<br /><br />Meu arquivo ficou assim:<br /><script src="https://gist.github.com/1076956.js"> </script><br /><br />Pra finalizar, você precisa criar os diretórios no servidor. Para isso simplesmente execute (no diretorio da aplicação)<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy:setup</span><br /><br /><h2>Realizando o Deploy</h2><br />Depois disso, você poderá realizar seu deploy automático executando o comando:<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy</span></div>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/blog/page/2/">&larr; Older</a>
@@ -428,9 +524,21 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
 </div>
 <aside class="sidebar">
   
-    <section>
+    <link href="http://blossom.github.com/contributors/example/contributors.css" media="screen, projection" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="http://blossom.github.com/contributors/lib/contributors.min.js"> </script>
+
+<div id="blog-contributors"></div>
+<script type="text/javascript">
+  contributors.generate('brunch', 'brunch',
+  { placeholder: 'blog-contributors'});
+</script>
+<section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
+      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -466,10 +574,6 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
     
       <li class="post">
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
       </li>
     
   </ul>

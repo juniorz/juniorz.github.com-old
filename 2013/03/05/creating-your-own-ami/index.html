@@ -5,11 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: droid - Reinaldo Junior</title>
+  <title>Creating your own AMI - Reinaldo Junior</title>
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="Category: droid">
+  <meta name="description" content="Disclaimer: this blog post is a DRAFT Objective Create a custom (and minimal) Centos 5.x instance store-backed AMI with
+a traditional Amazon AKI/AMI &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +19,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.netblog/categories/droid/">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <script src="/javascripts/modernizr-2.0.js"></script>
@@ -75,50 +76,194 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: droid</h1>
+    
+      <h1 class="entry-title">Creating your own AMI</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T17:46:00-03:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+        
+
+| <a href="http://prose.io/#juniorz/juniorz.github.com/edit/source/source/_posts/2013-03-05-creating-your-own-ami.markdown">Fork me</a>
+
+
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><strong>Disclaimer: this blog post is a DRAFT</strong></p>
 
-  
-  <h2>2011</h2>
+<h2>Objective</h2>
 
-<article>
-  
-<h1><a href="/2011/07/04/playing-with-droid/">Playing with Droid</a></h1>
-<time datetime="2011-07-04T00:00:00-03:00" pubdate><span class='month'>Jul</span> <span class='day'>04</span> <span class='year'>2011</span></time>
+<p>Create a custom (and minimal) Centos 5.x instance store-backed AMI with
+a traditional Amazon AKI/AMI (no PVGrub).</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/droid/'>droid</a>, <a class='category' href='/blog/categories/dsl/'>dsl</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gsoc/'>gsoc</a></span>
-</footer>
+<h2>Context</h2>
+
+<p>In order to launch a new machine, a user must choose a specific AMI (Amazon
+Machine Image).</p>
+
+<p>An AMI contains all information necessary to boot an Amazon EC2 instance with
+your software. An AMI is like a template of a computer&#8217;s root volume.</p>
+
+<p>Even though there is a lot of AMIs available (both publicly and privately),
+often you just can&#8217;t find any that fits your needs (or you just can&#8217;t
+trust what is shipped with the AMI).</p>
+
+<p>Therefore, Amazon provides a way of creating (and distributing) your own AMIs,
+giving you full control of what should be installed and running in your instance.</p>
+
+<h2>Background</h2>
+
+<p>In order to create a custom AMI you have to know a little about how it
+work, what are the options available to be chosen and how to do it.</p>
+
+<h3>The boot proccess</h3>
+
+<p>Amazon EC2 is built on a Xen-based solution.
+In order to launch a virtual machine (instance in EC2 nomenclature, domU in Xen
+nomenclature) the Xen hypervisor needs some information about how to find the
+proper kernel to boot, how to load it, and so on. This information is provided
+by a set of shared files available in the EC2 infrastructure:</p>
+
+<ul>
+<li><p>An AKI (Amazon Kernel Image) is the Xen guest paravirtualized kernel used by an AMI.<br/>
+It represents the <a href="http://en.wikipedia.org/wiki/Vmlinux">vmlinuz</a> portion of the kernel. It is basically the compiled
+kernel that gets loaded on boot.</p></li>
+<li><p>An ARI (Amazon Ramdisk Image) is the Xen guest paravirtualized ramdisk used by an AMI.<br/>
+It represents the <a href="http://en.wikipedia.org/wiki/Initrd">initrd</a>/initramfs. It is the ramdisk that gets loaded with
+the kernel and has the initial driver modules for the kernel to find the root
+filesystem.</p></li>
+</ul>
 
 
-</article>
+<p>When an AMI is built, it is designed for a specific AKI (and ARI).
+Regarding the boot proccess, there are two ways of building an AMI:</p>
+
+<ol>
+<li>Using an AKI (and a corresponding ARI)</li>
+<li>Using a PVGrub-based AKI (and no ARI)</li>
+</ol>
 
 
+<p>In the beginning of EC2, the only way to build an AMI was to use an AKI
+(and a matching ARI) to boot the instance.</p>
 
-<article>
-  
-<h1><a href="/2011/05/29/droid-dsl/">The Droid DSL</a></h1>
-<time datetime="2011-05-29T00:00:00-03:00" pubdate><span class='month'>May</span> <span class='day'>29</span> <span class='year'>2011</span></time>
+<p>As from (date missing), EC2 started to support the use of PVGrub-based AKIs.
+These AKIs simulate grub as the kernel and allow you to install your kernel on the
+AMI and have it perform similar to bare-metal system where it reads the kernel
+and ramdisk from the filesystem. These PVGrub AKIs do not use ARIs.</p>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/blog/categories/acceleo/'>acceleo</a>, <a class='category' href='/blog/categories/android/'>android</a>, <a class='category' href='/blog/categories/droid/'>droid</a>, <a class='category' href='/blog/categories/dsl/'>dsl</a>, <a class='category' href='/blog/categories/eclipse/'>eclipse</a>, <a class='category' href='/blog/categories/gsoc/'>gsoc</a>, <a class='category' href='/blog/categories/xtext/'>xtext</a></span>
-</footer>
+<h3>Other AMI characteristics</h3>
 
+<p>Besides the boot-specific setting you must craft your AMI according to the following characteristics:</p>
 
-</article>
+<p><strong>Root device volume</strong><br/>
+Can be either <code>instance store</code> or <code>ebs</code>.
+An <code>instance store</code> AMI can only launch <em>instance store-backed</em> instances
+and an <code>ebs</code> AMI can only launch <em>ebs-backed</em> instances.</p>
 
+<p><strong>Architecture</strong><br/>
+Can be either <code>i386</code> (32-bits) or <code>x86_64</code> (64-bits).</p>
+
+<h2>Building the AMI</h2>
+
+<p>1) Launch a host instance on EC2
+  - It will be easier and faster
+2) Install the basic tollset
+3) Get the kernel module matching the AKI/ARI
+4) Install basic stuff
+5) Bundle and publish</p>
+
+<h3>Resources on the interwebs</h3>
+
+<p>https://forums.aws.amazon.com/message.jspa?messageID=256534
+https://help.ubuntu.com/community/EC2FAQ
+http://openfoo.org/blog/amazon_ec2_underlying_architecture.html</p>
+
+<p>http://en.wikipedia.org/wiki/Xen
+http://en.wikipedia.org/wiki/Hypervisor</p>
+
+<p>http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html
+http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Reinaldo Junior</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-03-05T17:46:00-03:00" pubdate data-updated="true">Mar 5<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/aws/'>aws</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2012/01/05/migrando-o-blog-para-octopress/" title="Previous Post: Migrando o blog para Octopress">&laquo; Migrando o blog para Octopress</a>
+      
+      
+    </p>
+  </footer>
 </article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
 </div>
 
@@ -263,7 +408,10 @@
       var disqus_shortname = 'reinaldojunior';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/';
+        var disqus_url = 'http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
