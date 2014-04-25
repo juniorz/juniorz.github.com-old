@@ -4,7 +4,7 @@
   <title><![CDATA[Category: gstreamer | Reinaldo Junior]]></title>
   <link href="http://blog.reinaldojunior.net/blog/categories/gstreamer/atom.xml" rel="self"/>
   <link href="http://blog.reinaldojunior.net/"/>
-  <updated>2013-10-28T00:20:01-02:00</updated>
+  <updated>2014-04-24T23:21:21-03:00</updated>
   <id>http://blog.reinaldojunior.net/</id>
   <author>
     <name><![CDATA[Reinaldo Junior]]></name>
@@ -30,7 +30,7 @@ brew install gettext pkg-config glib</p>
 
 <h1>autopoint is missing on Lion</h1>
 
-<p>PATH="$PATH:<code>brew --prefix gettext</code>/bin/"</p>
+<p>PATH=&ldquo;$PATH:<code>brew --prefix gettext</code>/bin/&rdquo;</p>
 
 <h1>Required libs provided by homebrew</h1>
 
@@ -62,17 +62,17 @@ git clone git://anongit.freedesktop.org/gstreamer/qt-gstreamer
 <p>``` bash
 cd $BUILD_ROOT/gstreamer</p>
 
-<p>GST_CONFIG_PATH="<code>brew --prefix libiconv</code>/lib/pkgconfig:<code>brew --prefix libffi</code>/lib/pkgconfig:<code>brew --prefix gettext</code>/lib/pkgconfig"</p>
+<p>GST_CONFIG_PATH=&ldquo;<code>brew --prefix libiconv</code>/lib/pkgconfig:<code>brew --prefix libffi</code>/lib/pkgconfig:<code>brew --prefix gettext</code>/lib/pkgconfig&rdquo;</p>
 
-<p>./autogen.sh --noconfigure
-./configure --disable-gtk-doc --disable-debug --with-pkg-config-path=$GST_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+<p>./autogen.sh &mdash;noconfigure
+./configure &mdash;disable-gtk-doc &mdash;disable-debug &mdash;with-pkg-config-path=$GST_CONFIG_PATH &mdash;prefix=$BUILD_TARGET</p>
 
 <p>make
 make install</p>
 
 <h1>Required</h1>
 
-<p>GSTP_CONFIG_PATH="$BUILD_TARGET/lib/pkgconfig"
+<p>GSTP_CONFIG_PATH=&ldquo;$BUILD_TARGET/lib/pkgconfig&rdquo;
 ```</p>
 
 <h2>Building the plugin base module (gst-plugins-base)</h2>
@@ -81,7 +81,7 @@ make install</p>
 
 <h1>liborc support</h1>
 
-<h1>http://code.entropywave.com/projects/orc/</h1>
+<h1><a href="http://code.entropywave.com/projects/orc/">http://code.entropywave.com/projects/orc/</a></h1>
 
 <p>brew install orc</p>
 
@@ -89,26 +89,26 @@ make install</p>
 
 <p>brew install libvorbis</p>
 
-<p>cd "$BUILD_ROOT/gst-plugins-base"
-./autogen.sh --noconfigure
-./configure --disable-gtk-doc --disable-debug --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+<p>cd &ldquo;$BUILD_ROOT/gst-plugins-base&rdquo;
+./autogen.sh &mdash;noconfigure
+./configure &mdash;disable-gtk-doc &mdash;disable-debug &mdash;with-pkg-config-path=$GSTP_CONFIG_PATH &mdash;prefix=$BUILD_TARGET</p>
 
 <p>make
 make install
 ```</p>
 
-<h2>Building the "good" plugins (gst-plugins-good)</h2>
+<h2>Building the &ldquo;good&rdquo; plugins (gst-plugins-good)</h2>
 
 <p>``` bash
-cd "$BUILD_ROOT/gst-plugins-good"
-./autogen.sh --noconfigure
-./configure --disable-gtk-doc --disable-debug --disable-goom --disable-libpng --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+cd &ldquo;$BUILD_ROOT/gst-plugins-good&rdquo;
+./autogen.sh &mdash;noconfigure
+./configure &mdash;disable-gtk-doc &mdash;disable-debug &mdash;disable-goom &mdash;disable-libpng &mdash;with-pkg-config-path=$GSTP_CONFIG_PATH &mdash;prefix=$BUILD_TARGET</p>
 
 <p>make
 make install
 ```</p>
 
-<h2>Building the "bad" plugind (gst-plugins-bad)</h2>
+<h2>Building the &ldquo;bad&rdquo; plugind (gst-plugins-bad)</h2>
 
 <p><strong>Note</strong>: <em>osxvideosrc</em> and <em>qtwrapper</em> are disabled because they use deprecated APIs (<a href="http://code.google.com/p/ossbuild/wiki/MacBuild">more info</a>).</p>
 
@@ -118,9 +118,9 @@ make install
 
 <p>brew install rtmpdump libvpx libmms faac faad2</p>
 
-<p>cd "$BUILD_ROOT/gst-plugins-bad"
-./autogen.sh --noconfigure
-./configure --disable-gtk-doc --disable-debug --disable-apexsink --with-pkg-config-path=$GSTP_CONFIG_PATH --prefix=$BUILD_TARGET</p>
+<p>cd &ldquo;$BUILD_ROOT/gst-plugins-bad&rdquo;
+./autogen.sh &mdash;noconfigure
+./configure &mdash;disable-gtk-doc &mdash;disable-debug &mdash;disable-apexsink &mdash;with-pkg-config-path=$GSTP_CONFIG_PATH &mdash;prefix=$BUILD_TARGET</p>
 
 <p>make
 make install

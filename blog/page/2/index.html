@@ -18,13 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.net/blog/page/2/">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/blog/page/2">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Reinaldo Junior" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -100,48 +101,8 @@
 
 <time datetime="2011-07-11T00:00:00-03:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
         
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.<br /><br /><h2>Configurando o servidor</h2>No servidor, crie um usuário que será utilizado para realizar o deploy. Eu utilizei uma senha gerada aleatóriamente (um MD5 de um arquivo, por exemplo). Em seguida, adicionei minha chave privada (a que eu uso para acessar meus repositórios no Github) ao arquivo authorized_keys do usuário de deploy.<br /><br /><b>Na máquina local</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />scp ~/.ssh/id_rsa.pub reinaldo@servidor:/home/reinaldo/my_key.pub<br />ssh reinaldo@servidor<br /></span><br /><br /><b>No servidor</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />sudo adduser deploy<br />MY_PUBLIC_KEY=/home/reinaldo/my_key.pub<br />sudo mkdir -p /home/deploy/.ssh<br />sudo cat $MY_PUBLIC_KEY&nbsp;&gt;&gt; /home/deploy/.ssh/authorized_keys &amp;&amp; rm&nbsp;$MY_PUBLIC_KEY<br />sudo chmod 600 /home/deploy/.ssh/authorized_keys<br />sudo chmod 700 /home/deploy/.ssh<br />sudo chown deploy:deploy -R /home/deploy</span><br /><br /><h2>Configurando a aplicação</h2>Adicione a gem capistrano no seu <b>Gemfile</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">gem &#8216;capistrano&#8217;</span><br /><br />Em seguida, no diretório da aplicação<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />bundle install<br />capify .<br />echo &#8220;.bundle\n&#8221; &gt;&gt; .gitignore<br /></span><br /><br />Isso vai criar o arquivo <b>config/deploy.rb</b> onde serão armazenadas as configurações de deploy, bem como as tasks.<br /><br />Meu arquivo ficou assim:<br /><script src="https://gist.github.com/1076956.js"> </script><br /><br />Pra finalizar, você precisa criar os diretórios no servidor. Para isso simplesmente execute (no diretorio da aplicação)<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy:setup</span><br /><br /><h2>Realizando o Deploy</h2><br />Depois disso, você poderá realizar seu deploy automático executando o comando:<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy</span></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Deploy automatizado de aplicações Rails com Capistrano e Github</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-07-11T00:00:00-03:00" pubdate data-updated="true">Jul 11<span>th</span>, 2011</time>
-        
-
-        
-         | <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/#disqus_thread">Comments</a>
+           | <a href="/2011/07/11/deploy-automatizado-de-aplicacoes-rails/#disqus_thread"
+             data-disqus-identifier="http://blog.reinaldojunior.net/2011/07/11/deploy-automatizado-de-aplicacoes-rails/">Comments</a>
         
       </p>
     
@@ -193,8 +154,8 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
 
 <p>Em seguida, no diretório da aplicação</p>
 
-<figure class='code'><figcaption><span>&#8220;Capistrando&#8221; a aplicação  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>&#8220;Capistrando&#8221; a aplicação </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='console'><span class='line'><span class="go">bundle install</span>
@@ -245,8 +206,6 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
 
 <time datetime="2011-07-04T00:00:00-03:00" pubdate data-updated="true">Jul 4<span>th</span>, 2011</time>
         
-
-        
       </p>
     
   </header>
@@ -254,6 +213,43 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
 
   <div class="entry-content"><div class='post'>
 During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m proud to announce that it is working!<br /><br />Since the <a href="http://blog.reinaldojunior.net/2011/05/droid-dsl.html">last blog post</a>, the DSL had changed. In order to simplify the DSL some concepts have been removed, for example, ImageButton, Link and ImageLink. These concepts are still available at the Button concept, so a Button with and &#8220;src&#8221; property is a ImageButton and a Button with a &#8220;target&#8221; property is a &#8220;Link&#8221;.<br /><br />Another significant change in the DSL is the merging of the Activity and Layout concepts in a single concept: Screen (although the layout concept is still existing). This made easier to write a simple application. The screen&#8217;s widgets can now be placed inside the screen (you don&#8217;t need anymore to create a layout to put the widgets and set the activity to show the created layout).<br /><br />So what used to be the simplest Droid example:<br /><pre>application "Hello, Android!" com.example.android.hellodroid {<br /><br /> string hello = "Hello, Android! I am a string resource!"<br /><br /> activity HelloDroid {<br />  =&gt; show main<br /> }<br /><br /> layout main {<br />  textView: @string hello<br /> }<br />}<br /></pre><br />Now is even simpler:<br /><pre>application "Hello, Android!" =&gt; com.example.android.hellodroid {<br /><br /> string hello = "Hello, Android! I am a string resource!"<br /><br /> screen HelloDroid {<br />  # textView: @string hello<br /> }<br />}<br /></pre><br />In order to play with the Droid DSL, you need to install some plugins:<br /><ol><li>Install the ADT Eclipse plugin. The target of the DSL is creating Android applications, so you must to install the ADT. The Android <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> tutorial is all you need to have your environment ready to the work.</li><li>Install the Droid plugins, located at this Update Site:&nbsp;<a href="http://reinaldojunior.net/eclipse-amalgamation-tutorials/">http://reinaldojunior.net/eclipse-amalgamation-tutorials/</a></li></ol><h3>Creating your first Droid Project</h3>A Droid project is an Eclipse Android Project that has automatic code generation from a droid model. The droid model is inferred from a .droid file (a textual representation of the model).<br /><br />To create a Droid project you must to:<br /><ol><li>Create an Android Project (following the instructions at the Hello World tutorial)</li><li>Create a &#8217;<i>model</i>&#8216;&nbsp;folder&nbsp;inside the project</li><li>Create a &#8217;<i>src-gen</i>&#8217; folder inside the project</li><li>Right-click the &#8217;<i>src-gen</i>&#8217; folder and select &#8220;Build Path&#8221; &gt; &#8220;Use as source folder&#8221;</li><li>You can delete the content of the &#8217;<i>src</i>&#8217; folder as it will have a generated Activity stub.</li></ol><div>Now you are ready to start playing with the Droid DSL.&nbsp;Inside&nbsp;the &#8217;<i>model</i>&#8217; folder, create a .droid file and open it. The file will be opened with the DSL textual editor (generated with&nbsp;Xtext).</div><div><br /></div><div>You can use this sample code to test your environment:</div><pre>application "SimpleWizard" =&gt; org.eclipse.amalgam.tutorials.android.simplewizard {<br /> <br /> screen First {<br />  # textView: "This is the first screen" {}<br />  # button: "Next &gt;" to Second {}<br /> }<br /> <br /> screen Second {<br />  # textView: "And this is the second screen" {}<br />  # button: "&lt; Back" to First {}<br />  # button: "Next &gt;" to Third {}<br /> }<br /><br /> screen Third {<br />  # textView: "Now, the last one" {}<br />  # button: "&lt; Back" to Second {}<br /> }<br />}</pre><h3>Generating the code</h3><ol><li>Right-click in the .droid file</li><li>Select &#8220;Acceleo Model to Text&#8221; &gt; &#8220;Generate Android Code&#8221;</li><li>The generated code will be available at the &#8217;<i>src-gen</i>&#8217; folder and at the &#8217;<i>res</i>&#8217; folder.</li></ol>In order to run the generated application, I recommend to use an Android 2.3.3 virtual device.<br /><ol></ol></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/05/29/droid-dsl/">The Droid DSL</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-05-29T00:00:00-03:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+The first part of <a href="http://www.google-melange.com/gsoc/project/google/gsoc2011/juniorz/10001">my GSoC project</a> is creating a DSL (<a href="http://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a>) targeting the development of <a href="http://www.android.com/">Android</a> applications. The main objective is the building of a DSL which can be used as the basis to the development of the Amalgamation Tutorials (the project&#8217;s final objective).<br /><br />The DSL&#8217;s abstract syntax [1] (an <a href="http://wiki.eclipse.org/Ecore">Ecore</a> metamodel) was created from the definition of a concrete syntax &nbsp;(a Xtext grammar [2]). To this part, I used&nbsp;<a href="http://www.eclipse.org/Xtext/">Xtext</a>. Before that, I and my mentor had discussed about what granularity level should be used to choose what concepts should be expressed in the DSL. A too fine granularity level could lead to a very detailed DSL but would take too much time to complete, while a too coarse one could lead to an very constrained DSL (and maybe useless).<br /><a name='more'></a><br /><br />Considering this, I chose the following concepts as main concepts to the DSL:<br /><ul><li><b>Application</b> - The main concept. We&#8217;re talking about Android Applications.</li><li><b>Activity</b> - Represents an application screen and the user interface displayed.</li><li><b>Layout</b> - Represents a collection of UI elements</li><li><b>Widget</b> - Represents the various UI elements</li><li><b>Resource</b> - Represents values which can be assigned to widgets properties. They have a type and can be serialized to a resource file (XML)&nbsp;</li></ul>The following example ilustrates the <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> sample application (provided by Android) written using the Droid DSL (there are more Hello World examples available [3])<br /><br /><script src="https://gist.github.com/998290.js"></script><br /><br />In order to have some direction in the creation of the tutorials, I started to create a code-generator using a Model-to-Text transformation. The transformation [4] can generate the <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest.xml</a> file that describes the application, the Activity Java class, the Layout XML file and the String resource XML file.<br />To make this I used the <a href="http://www.eclipse.org/acceleo/">Acceleo</a>.<br /><br />If you want to play with this DSL you just need to install the <a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/deploy/plugins">generated plugins</a> in your Eclipse and create a new file with the <i>.droid</i> extension.&nbsp;For more information check the <a href="https://github.com/eclipse-soc/amalgamation-examples">project repository</a> at GitHub.<br /><div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;"><br /></div><b><i>References</i></b>:<br /><br /><ol><li>Harel, D., &amp; Rumpe, B. (2000). <a href="http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.10.1512">Modeling Languages: Syntax, Semantics and All That Stuff Part I: The Basic Stuff</a>. Citeseer. doi: 10.1.1.10.1512.</li><li>To more info, see:&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/blob/master/xtext/plugins/org.eclipse.amalgam.tutorials.xtext/src/org/eclipse/amalgam/tutorials/xtext/Droid.xtext">Droid.xtext</a></li><li>Some of the Hello Views tutorials are available:&nbsp;<a href="https://gist.github.com/998350">Relative Layout</a>&nbsp;and&nbsp;<a href="https://gist.github.com/998349">Linear Layout</a>.</li><li>Available under&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/acceleo/plugins/org.eclipse.amalgam.tutorials.acceleo/src/org/eclipse/amalgam/tutorials/acceleo/files">this path</a></li></ol></div>
 </div>
   
   
@@ -276,10 +272,6 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
-      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -317,6 +309,10 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
       </li>
     
+      <li class="post">
+        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
+      </li>
+    
   </ul>
 </section>
 
@@ -329,7 +325,7 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
   <a href="https://github.com/juniorz">@juniorz</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -347,23 +343,6 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ReinaldoJunior", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ReinaldoJunior" class="twitter-follow-button" data-show-count="false">Follow @ReinaldoJunior</a>
-  
 </section>
 
 
@@ -392,7 +371,7 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Reinaldo Junior -
+  Copyright &copy; 2014 - Reinaldo Junior -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -407,7 +386,7 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -418,7 +397,7 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
@@ -432,7 +411,7 @@ During the last weeks I&#8217;ve been working on the Droid DSL. Now I&#8217;m pr
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

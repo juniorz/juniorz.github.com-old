@@ -18,13 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code/">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Reinaldo Junior" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -97,11 +98,6 @@
 
 <time datetime="2011-04-05T00:00:00-03:00" pubdate data-updated="true">Apr 5<span>th</span>, 2011</time>
         
-
-| <a href="http://prose.io/#juniorz/juniorz.github.com/edit/source/source/_posts/2011-04-05-proposta-para-o-google-summer-of-code.html">Fork me</a>
-
-
-        
       </p>
     
   </header>
@@ -145,7 +141,7 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2011/04/05/proposta-para-o-google-summer-of-code/" >Tweet</a>
   
   
   
@@ -172,10 +168,6 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
-      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -213,6 +205,10 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
       </li>
     
+      <li class="post">
+        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
+      </li>
+    
   </ul>
 </section>
 
@@ -225,7 +221,7 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
   <a href="https://github.com/juniorz">@juniorz</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -243,23 +239,6 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ReinaldoJunior", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ReinaldoJunior" class="twitter-follow-button" data-show-count="false">Follow @ReinaldoJunior</a>
-  
 </section>
 
 
@@ -289,7 +268,7 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Reinaldo Junior -
+  Copyright &copy; 2014 - Reinaldo Junior -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -302,7 +281,7 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
@@ -316,7 +295,7 @@ Esse ano mais uma vez estou me &#8221;<a href="http://www.google-melange.com/gso
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

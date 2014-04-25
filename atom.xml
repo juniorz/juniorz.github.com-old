@@ -4,7 +4,7 @@
   <title><![CDATA[Reinaldo Junior]]></title>
   <link href="http://blog.reinaldojunior.net/atom.xml" rel="self"/>
   <link href="http://blog.reinaldojunior.net/"/>
-  <updated>2013-10-28T00:20:01-02:00</updated>
+  <updated>2014-04-24T23:21:21-03:00</updated>
   <id>http://blog.reinaldojunior.net/</id>
   <author>
     <name><![CDATA[Reinaldo Junior]]></name>
@@ -12,109 +12,6 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
-  
-  <entry>
-    <title type="html"><![CDATA[Creating your own AMI]]></title>
-    <link href="http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami/"/>
-    <updated>2013-03-05T17:46:00-03:00</updated>
-    <id>http://blog.reinaldojunior.net/2013/03/05/creating-your-own-ami</id>
-    <content type="html"><![CDATA[<p><strong>Disclaimer: this blog post is a DRAFT</strong></p>
-
-<h2>Objective</h2>
-
-<p>Create a custom (and minimal) Centos 5.x instance store-backed AMI with
-a traditional Amazon AKI/AMI (no PVGrub).</p>
-
-<h2>Context</h2>
-
-<p>In order to launch a new machine, a user must choose a specific AMI (Amazon
-Machine Image).</p>
-
-<p>An AMI contains all information necessary to boot an Amazon EC2 instance with
-your software. An AMI is like a template of a computer&#8217;s root volume.</p>
-
-<p>Even though there is a lot of AMIs available (both publicly and privately),
-often you just can&#8217;t find any that fits your needs (or you just can&#8217;t
-trust what is shipped with the AMI).</p>
-
-<p>Therefore, Amazon provides a way of creating (and distributing) your own AMIs,
-giving you full control of what should be installed and running in your instance.</p>
-
-<h2>Background</h2>
-
-<p>In order to create a custom AMI you have to know a little about how it
-work, what are the options available to be chosen and how to do it.</p>
-
-<h3>The boot proccess</h3>
-
-<p>Amazon EC2 is built on a Xen-based solution.
-In order to launch a virtual machine (instance in EC2 nomenclature, domU in Xen
-nomenclature) the Xen hypervisor needs some information about how to find the
-proper kernel to boot, how to load it, and so on. This information is provided
-by a set of shared files available in the EC2 infrastructure:</p>
-
-<ul>
-<li><p>An AKI (Amazon Kernel Image) is the Xen guest paravirtualized kernel used by an AMI.<br/>
-It represents the <a href="http://en.wikipedia.org/wiki/Vmlinux">vmlinuz</a> portion of the kernel. It is basically the compiled
-kernel that gets loaded on boot.</p></li>
-<li><p>An ARI (Amazon Ramdisk Image) is the Xen guest paravirtualized ramdisk used by an AMI.<br/>
-It represents the <a href="http://en.wikipedia.org/wiki/Initrd">initrd</a>/initramfs. It is the ramdisk that gets loaded with
-the kernel and has the initial driver modules for the kernel to find the root
-filesystem.</p></li>
-</ul>
-
-
-<p>When an AMI is built, it is designed for a specific AKI (and ARI).
-Regarding the boot proccess, there are two ways of building an AMI:</p>
-
-<ol>
-<li>Using an AKI (and a corresponding ARI)</li>
-<li>Using a PVGrub-based AKI (and no ARI)</li>
-</ol>
-
-
-<p>In the beginning of EC2, the only way to build an AMI was to use an AKI
-(and a matching ARI) to boot the instance.</p>
-
-<p>As from (date missing), EC2 started to support the use of PVGrub-based AKIs.
-These AKIs simulate grub as the kernel and allow you to install your kernel on the
-AMI and have it perform similar to bare-metal system where it reads the kernel
-and ramdisk from the filesystem. These PVGrub AKIs do not use ARIs.</p>
-
-<h3>Other AMI characteristics</h3>
-
-<p>Besides the boot-specific setting you must craft your AMI according to the following characteristics:</p>
-
-<p><strong>Root device volume</strong><br/>
-Can be either <code>instance store</code> or <code>ebs</code>.
-An <code>instance store</code> AMI can only launch <em>instance store-backed</em> instances
-and an <code>ebs</code> AMI can only launch <em>ebs-backed</em> instances.</p>
-
-<p><strong>Architecture</strong><br/>
-Can be either <code>i386</code> (32-bits) or <code>x86_64</code> (64-bits).</p>
-
-<h2>Building the AMI</h2>
-
-<p>1) Launch a host instance on EC2
-  - It will be easier and faster
-2) Install the basic tollset
-3) Get the kernel module matching the AKI/ARI
-4) Install basic stuff
-5) Bundle and publish</p>
-
-<h3>Resources on the interwebs</h3>
-
-<p>https://forums.aws.amazon.com/message.jspa?messageID=256534
-https://help.ubuntu.com/community/EC2FAQ
-http://openfoo.org/blog/amazon_ec2_underlying_architecture.html</p>
-
-<p>http://en.wikipedia.org/wiki/Xen
-http://en.wikipedia.org/wiki/Hypervisor</p>
-
-<p>http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/RootDeviceStorage.html
-http://docs.aws.amazon.com/AWSEC2/latest/UserGuide/block-device-mapping-concepts.html</p>
-]]></content>
-  </entry>
   
   <entry>
     <title type="html"><![CDATA[Migrando o blog para Octopress]]></title>
@@ -139,14 +36,14 @@ Usar uma linguagem de marcação tão verbosa (<code>&lt;strong&gt;</code> e <co
 Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 
 <ul>
-<li>Rascunhar os posts &#8220;offline&#8221;, escrevendo num arquivo .txt. Essa parte demora.</li>
-<li>Acessar o painel do blog &#8220;online&#8221;, criar o post</li>
-<li>Formatar o post &#8220;online&#8221;, olhar como ficou no editor WYSIWYG, repetir.</li>
+<li>Rascunhar os posts &ldquo;offline&rdquo;, escrevendo num arquivo .txt. Essa parte demora.</li>
+<li>Acessar o painel do blog &ldquo;online&rdquo;, criar o post</li>
+<li>Formatar o post &ldquo;online&rdquo;, olhar como ficou no editor WYSIWYG, repetir.</li>
 <li>Colocar color highlight nos códigos, disponibilizar os códigos pra download, etc.</li>
 </ul>
 
 
-<p>A questão não é a parte dos &#8220;muitos passos&#8221; e sim &#8220;online/offline&#8221;.</p></li>
+<p>A questão não é a parte dos &ldquo;muitos passos&rdquo; e sim &ldquo;online/offline&rdquo;.</p></li>
 </ol>
 
 
@@ -154,13 +51,13 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 
 <h2>Solução</h2>
 
-<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &#8220;suporte&#8221; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
+<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &ldquo;suporte&rdquo; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
 
-<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&#8230; <strong>Gambi</strong>.</p>
+<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&hellip; <strong>Gambi</strong>.</p>
 
 <h2>Octopress</h2>
 
-<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> - um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
+<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> &ndash; um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
 
 <h3>Instalando</h3>
 
@@ -312,7 +209,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Building the &#8220;good&#8221; plugins (gst-plugins-good)</h2>
+<h2>Building the &ldquo;good&rdquo; plugins (gst-plugins-good)</h2>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -329,7 +226,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<h2>Building the &#8220;bad&#8221; plugind (gst-plugins-bad)</h2>
+<h2>Building the &ldquo;bad&rdquo; plugind (gst-plugins-bad)</h2>
 
 <p><strong>Note</strong>: <em>osxvideosrc</em> and <em>qtwrapper</em> are disabled because they use deprecated APIs (<a href="http://code.google.com/p/ossbuild/wiki/MacBuild">more info</a>).</p>
 
@@ -416,8 +313,8 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
 
 <p>Em seguida, no diretório da aplicação</p>
 
-<figure class='code'><figcaption><span>&#8220;Capistrando&#8221; a aplicação  </span></figcaption>
- <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>&#8220;Capistrando&#8221; a aplicação </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='console'><span class='line'><span class="go">bundle install</span>

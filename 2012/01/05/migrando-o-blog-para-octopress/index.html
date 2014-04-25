@@ -18,13 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Reinaldo Junior" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -97,12 +98,8 @@
 
 <time datetime="2012-01-05T10:34:00-02:00" pubdate data-updated="true">Jan 5<span>th</span>, 2012</time>
         
-
-| <a href="http://prose.io/#juniorz/juniorz.github.com/edit/source/source/_posts/2012-01-05-migrando-o-blog-para-octopress.markdown">Fork me</a>
-
-
-        
-         | <a href="#disqus_thread">Comments</a>
+           | <a href="#disqus_thread"
+             data-disqus-identifier="http://blog.reinaldojunior.net">Comments</a>
         
       </p>
     
@@ -127,14 +124,14 @@ Usar uma linguagem de marcação tão verbosa (<code>&lt;strong&gt;</code> e <co
 Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 
 <ul>
-<li>Rascunhar os posts &#8220;offline&#8221;, escrevendo num arquivo .txt. Essa parte demora.</li>
-<li>Acessar o painel do blog &#8220;online&#8221;, criar o post</li>
-<li>Formatar o post &#8220;online&#8221;, olhar como ficou no editor WYSIWYG, repetir.</li>
+<li>Rascunhar os posts &ldquo;offline&rdquo;, escrevendo num arquivo .txt. Essa parte demora.</li>
+<li>Acessar o painel do blog &ldquo;online&rdquo;, criar o post</li>
+<li>Formatar o post &ldquo;online&rdquo;, olhar como ficou no editor WYSIWYG, repetir.</li>
 <li>Colocar color highlight nos códigos, disponibilizar os códigos pra download, etc.</li>
 </ul>
 
 
-<p>A questão não é a parte dos &#8220;muitos passos&#8221; e sim &#8220;online/offline&#8221;.</p></li>
+<p>A questão não é a parte dos &ldquo;muitos passos&rdquo; e sim &ldquo;online/offline&rdquo;.</p></li>
 </ol>
 
 
@@ -142,13 +139,13 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 
 <h2>Solução</h2>
 
-<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &#8220;suporte&#8221; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
+<p>A solução seria uma plataforma de blogging que me fornecesse (por padrão) algo mais legível (mesmo que mais restrito) que HTML e que oferecesse &ldquo;suporte&rdquo; a HTML. O que eu queria era uma plataforma que suportasse <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>.</p>
 
-<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&#8230; <strong>Gambi</strong>.</p>
+<p>No final de 2011, ainda tentei usar o <a href="https://posterous.com/">Posterous</a> pela promessa de <a href="http://blog.posterous.com/announcing-markdown-support">suporte a Markdown</a> mas ainda assim era um grande <code>#fail</code>: precisava de um comentário HTML no topo do post pra indicar que eu tava escrevendo em Markdown e depois pra editar, era no editor visual deles, arghhhh&hellip; <strong>Gambi</strong>.</p>
 
 <h2>Octopress</h2>
 
-<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> - um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
+<p>No final do ano, por acaso, conheci o <a href="http://octopress.org/">Octopress</a> &ndash; um framework de blog baseado no <a href="http://github.com/mojombo/jekyll">Jekyll</a> (um gerador estático de website).</p>
 
 <h3>Instalando</h3>
 
@@ -207,7 +204,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
     
       <div class="sharing">
   
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" >Tweet</a>
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" data-via="ReinaldoJunior" data-counturl="http://blog.reinaldojunior.net/2012/01/05/migrando-o-blog-para-octopress/" >Tweet</a>
   
   
   
@@ -220,8 +217,6 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
       
         <a class="basic-alignment left" href="/2011/12/10/how-to-build-gstreamer-from-source/" title="Previous Post: How to build GStreamer from source">&laquo; How to build GStreamer from source</a>
       
-      
-        <a class="basic-alignment right" href="/2013/03/05/creating-your-own-ami/" title="Next Post: Creating your own AMI">Creating your own AMI &raquo;</a>
       
     </p>
   </footer>
@@ -240,10 +235,6 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
-      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -281,6 +272,10 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
       </li>
     
+      <li class="post">
+        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
+      </li>
+    
   </ul>
 </section>
 
@@ -293,7 +288,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
   <a href="https://github.com/juniorz">@juniorz</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -311,23 +306,6 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating...</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ReinaldoJunior", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ReinaldoJunior" class="twitter-follow-button" data-show-count="false">Follow @ReinaldoJunior</a>
-  
 </section>
 
 
@@ -357,7 +335,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Reinaldo Junior -
+  Copyright &copy; 2014 - Reinaldo Junior -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -375,7 +353,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -386,7 +364,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
@@ -400,7 +378,7 @@ Por causa do problema (1) eu era forçado a usar o seginte workflow:</p>
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>

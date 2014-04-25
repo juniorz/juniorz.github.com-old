@@ -9,7 +9,7 @@
   <meta name="author" content="Reinaldo Junior">
 
   
-  <meta name="description" content="The first part of my GSoC project is creating a DSL (Domain Specific Language) targeting the development of Android applications. The main objective &hellip;">
+  <meta name="description" content="Working on my GSoC project, I noted that the generated Xtext Editor simply stopped to work. Looking at the logs I found the message:!MESSAGE Unable &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,13 +18,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.reinaldojunior.net/blog/page/3/">
+  <link rel="canonical" href="http://blog.reinaldojunior.net/blog/page/3">
   <link href="/favicon.png" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="/javascripts/ender.js"></script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <link href="/atom.xml" rel="alternate" title="Reinaldo Junior" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
   <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
@@ -82,45 +83,6 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2011/05/29/droid-dsl/">The Droid DSL</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2011-05-29T00:00:00-03:00" pubdate data-updated="true">May 29<span>th</span>, 2011</time>
-        
-
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><div class='post'>
-The first part of <a href="http://www.google-melange.com/gsoc/project/google/gsoc2011/juniorz/10001">my GSoC project</a> is creating a DSL (<a href="http://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a>) targeting the development of <a href="http://www.android.com/">Android</a> applications. The main objective is the building of a DSL which can be used as the basis to the development of the Amalgamation Tutorials (the project&#8217;s final objective).<br /><br />The DSL&#8217;s abstract syntax [1] (an <a href="http://wiki.eclipse.org/Ecore">Ecore</a> metamodel) was created from the definition of a concrete syntax &nbsp;(a Xtext grammar [2]). To this part, I used&nbsp;<a href="http://www.eclipse.org/Xtext/">Xtext</a>. Before that, I and my mentor had discussed about what granularity level should be used to choose what concepts should be expressed in the DSL. A too fine granularity level could lead to a very detailed DSL but would take too much time to complete, while a too coarse one could lead to an very constrained DSL (and maybe useless).<br /><a name='more'></a><br /><br />Considering this, I chose the following concepts as main concepts to the DSL:<br /><ul><li><b>Application</b> - The main concept. We&#8217;re talking about Android Applications.</li><li><b>Activity</b> - Represents an application screen and the user interface displayed.</li><li><b>Layout</b> - Represents a collection of UI elements</li><li><b>Widget</b> - Represents the various UI elements</li><li><b>Resource</b> - Represents values which can be assigned to widgets properties. They have a type and can be serialized to a resource file (XML)&nbsp;</li></ul>The following example ilustrates the <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> sample application (provided by Android) written using the Droid DSL (there are more Hello World examples available [3])<br /><br /><script src="https://gist.github.com/998290.js"></script><br /><br />In order to have some direction in the creation of the tutorials, I started to create a code-generator using a Model-to-Text transformation. The transformation [4] can generate the <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest.xml</a> file that describes the application, the Activity Java class, the Layout XML file and the String resource XML file.<br />To make this I used the <a href="http://www.eclipse.org/acceleo/">Acceleo</a>.<br /><br />If you want to play with this DSL you just need to install the <a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/deploy/plugins">generated plugins</a> in your Eclipse and create a new file with the <i>.droid</i> extension.&nbsp;For more information check the <a href="https://github.com/eclipse-soc/amalgamation-examples">project repository</a> at GitHub.<br /><div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;"><br /></div><b><i>References</i></b>:<br /><br /><ol><li>Harel, D., &amp; Rumpe, B. (2000). <a href="http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.10.1512">Modeling Languages: Syntax, Semantics and All That Stuff Part I: The Basic Stuff</a>. Citeseer. doi: 10.1.1.10.1512.</li><li>To more info, see:&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/blob/master/xtext/plugins/org.eclipse.amalgam.tutorials.xtext/src/org/eclipse/amalgam/tutorials/xtext/Droid.xtext">Droid.xtext</a></li><li>Some of the Hello Views tutorials are available:&nbsp;<a href="https://gist.github.com/998350">Relative Layout</a>&nbsp;and&nbsp;<a href="https://gist.github.com/998349">Linear Layout</a>.</li><li>Available under&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/acceleo/plugins/org.eclipse.amalgam.tutorials.acceleo/src/org/eclipse/amalgam/tutorials/acceleo/files">this path</a></li></ol></div>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
       <h1 class="entry-title"><a href="/2011/05/15/xtext-editor-unexpectedly-stopped/">Xtext Editor unexpectedly stopped working</a></h1>
     
     
@@ -138,8 +100,6 @@ The first part of <a href="http://www.google-melange.com/gsoc/project/google/gso
 
 
 <time datetime="2011-05-15T00:00:00-03:00" pubdate data-updated="true">May 15<span>th</span>, 2011</time>
-        
-
         
       </p>
     
@@ -178,8 +138,6 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
 
 <time datetime="2011-04-26T00:00:00-03:00" pubdate data-updated="true">Apr 26<span>th</span>, 2011</time>
         
-
-        
       </p>
     
   </header>
@@ -187,6 +145,43 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
 
   <div class="entry-content"><div class='post'>
 <blockquote>Google Summer of Code (GSoC) é um programa que oferece a desenvolvedores estudantes <a href="http://pt.wikipedia.org/wiki/Estip%C3%AAndio">estipêndios</a> para escrever código para vários projetos opensource. [<a href="http://www.google-melange.com/document/show/gsoc_program/google/gsoc2011/faqs#what_is">1</a>]</blockquote><br /><div>É comum nos Estados Unidos os estudantes aproveitarem as férias (no verão) para arrumar um emprego e pegar uma grana. O objetivo do estipêndio é motivar os alunos a não pegarem um trabalho de verão e ao invés disso colaborarem para um projeto opensource.<br /><br />Entretanto, o objetivo final é beneficiar projetos opensource, incentivar jovens desenvolvedores a participarem de desenvolvimento opensource. Os projetos saem ganhando porque tem novas funcionalidades sendo inseridas. Os estudantes saem ganhando porque ganham experiência (e dinheiro). Além disso os dados podem ser utilizados para recrutar alunos para o time do Google.<br /><br />O Google funciona como financiador dos alunos e das organizações bem como um catalisador de projetos opensource.</div><a name='more'></a><br /><h3>Como funciona o Google Summer of Code?</h3><br /><div>Uma <b>organização</b> é um grupo que está fazendo um projeto opensource. Para participar do GSoC uma organização não precisa necessariamente ser uma entidade legal (como as Foundations de Software Livre que existem). Elas apenas precisam disponibilizar software sob uma <a href="http://www.google.com/url?q=http%3A%2F%2Fwww.opensource.org%2Flicenses&amp;sa=D&amp;sntz=1&amp;usg=AFQjCNF9cc5VYE678rAcvxFhrLKX1rdOtQ">licença Open Source aprovada</a>. A cada ano o Google escolhe, dentre as organizações que se candidatarem, aquelas que irão participar do programa. Cada organização publica uma <b>lista de idéias&nbsp;</b>que é uma lista de sugestões de propostas que seriam interessantes para o projeto.</div><br /><div>Os <b>estudantes</b> enviam para as organizações suas <b>propostas</b>. Uma proposta tanto pode ser simplesmente uma idéia tirada da lista fornecida pela organização quanto uma idéia totalmente nova tirada da própria cabeça. Não precisa ser algo totalmente inovador ou revolucionário para o projeto. O mais importante é demostrar capacidade, disponibilidade, interesse e utilidade.</div><div>Cada estudante pode enviar até 20 propostas diferentes, entretanto apenas uma será aceita.<br /><br />Uma vez aceita, uma proposta deve receber um <b>mentor</b>, que é uma pessoa associada à organização e que possui capacidade de coordenar o trabalho do estudante provendo direcionamento e orientação.<br /><br />As organizações não são obrigadas a incorporar o código do estudante em seu projeto, e independente disso o estudante ainda vai receber o dinheiro.<br /><br />Toda essa mecânica Google-Organizações-Mentores-Estudantes é mediada pelo sistema do GSoC.</div><br /><h3>Avaliação</h3><div>Os estudantes serão avaliados pelos mentores que deverão preencher um formulário de avaliação (na metade e no final do programa). Da mesma forma os mentores são avaliados pelos estudantes. Os pagamentos só serão realizados mediante uma avaliação positiva.</div><br /><h3>Quanto tempo dura o programa?</h3><br /><div>Esse ano o programa vai durar aproximadamente 6 meses. Todos os anos o programa segue um cronograma semelhante a esse:</div><div><ul><li>28/Fev - 11/Mar (2 semanas)<br />Organizações se candidatam</li><li>14-18/Mar (1 semana)<br />Google escolhe as organizações e anuncia quais foram aceitas.</li><li>18-27/Mar (1 semana)<br />Estudantes discutem as idéias das organizações com as próprias organizações. Seria um periodo para amadurecer a idéia junto com a comunidade OpenSource.</li><li>28/Mar - 8/Abr (2 semanas)<br />Estudantes enviam suar propostas.</li><li>8-25 Abr (2 semanas)<br />Organizações vão receber do Google um numero máximo de estudantes que eles podem aceitar. A organização decide quais propostas vai aceitar. para isso tem que atribuir um mentor a cada proposta.</li><li>25 Abr<br />Anuncio das propostas aceitas</li><li>26/Abr - 22/Mai (4 semanas)<br />&#8220;Community Bounding&#8221;. Espera-se que nesse período o aluno esteja em contato com o mentor e a comunidade para se preparar para o trabalho em equipe.</li><li>23/Mai - 15/Ago (12 semanas)<br />Estudantes trabalham em seus projetos com a orientação de seus mentores</li><li>16/Ago - 22/Ago (1 semana)<br />Estudantes já devem ter terminado suas tarefas e vão ter essa semana para polir os resultados (documentação, teste, etc)</li><li>22/Ago - 26/Ago (1 semana)<br />Mentores e organizações vão avaliar os resultados e reportar ao Google.</li><li>29/Ago<br />Anúncio final do GSoC 2011</li></ul></div><div><b>Em resumo</b>: as organizações se candidatam e são aceitas; os estudantes se candidatam e são aceitos; os estudantes trabalham sob a supervisão dos mentores; os estudantes e mentores são avaliados; os estudantes finalizam seu trabalho; e os estudantes e mentores são avaliados novamente.</div><br /><h3>E o dinheiro?</h3><div>O valor do estipêndio é de U$ 5000 para o aluno e U$ 500 para a organização.&nbsp;Os estudantes recebem o dinheiro em parcelas:</div><br /><div><ul><li>U$ 500 logo após o início do trabalho (23/Mai)</li><li>U$ 2250 se passarem na primeira avaliação (15/Jul)</li><li>U$ 2250 se passarem na avaliação final (26/Ago)</li></ul></div><h3>E a camisa?</h3><div>No final do programa se você fez tudo certinho vai receber uma camisa do GSoC para poder tirar onda, além de um certificado do Google.</div></div>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2011-04-26T00:00:00-03:00" pubdate data-updated="true">Apr 26<span>th</span>, 2011</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><div class='post'>
+<div>Saiu a <a href="http://google-opensource.blogspot.com/2011/04/students-announced-for-2011-google.html">lista dos 1116 estudantes</a> que tiveram seus projetos aceitos para o Google Summer of Code (GSoC) 2011. Para minha surpresa a&nbsp;<a href="http://blog.reinaldojunior.net/2011/04/proposta-para-o-google-summer-of-code.html">minha proposta</a>, que envolve o projeto <a href="http://www.eclipse.org/modeling/amalgam/">Eclipse Amalgamation</a>, foi aceita! No total foram aceitas 17 propostas para o projeto Eclipse. Em meu projeto irei trabalhar com as tecnologias de modelagem (e metamodelagem) fornecidas pelo projeto Eclipse.<br /><a name='more'></a><br />No ano passado eu não havia sido aceito. Em parte o motivo foi porque eu comi mosca e perdi o prazo. Simples assim. Me inscrevi na primeira semana mas não recebi uma resposta dos mentores envolvidos até o fim da semana seguinte. Então acreditei que eu seria notificado quando eles entrassem em contato comigo. Mas isso não aconteceu, e no penúltimo dia ví que tinha uma pergunta do mentor e acabou não dando tempo. Esse ano minha página inicial no Safari foi a minha proposta.</div><br />Não sou um <i>committer</i> de nenhum projeto opensource, tampouco sou um gênio da programação. Mesmo assim fui aceito para o programa. Então&nbsp;qual é a dica para ter seu projeto aceito? Acho que o ponto principal é ter interesse e disponibilidade, além de ter uma noa proposta. Essa era minha principal preocupação: será que minha proposta está boa? ou como saber se minha proposta é boa?<br /><br />Claro que é necessário ter um conhecimento sobre o projeto e alguma experiência vai te ajudar. Mas posso dizer que sou um exemplo de um anônimo que teve seu projeto aceito.<br /><br />Uma coisa que é essencial para ser claro em sua proposta fornecendo informações detalhadas sobre o que você pretende desenvolver. &nbsp;Você deve ser claro dizendo o que pretende fazer, como você vai fazer isso e como isso poderá ser usado. Não basta apenas dizer que vai implementar um <a href="http://dev.eclipse.org/mhonarc/lists/soc-dev/msg01607.html">recurso de digitação fácil</a> sem explicar o que é isso.<br /><br />Agora que fui aceito, começa o período chamado &#8221;<a href="http://googlesummerofcode.blogspot.com/2007/04/so-what-is-this-community-bonding-all.html">Community Bonding</a>&#8221; onde espera-se que eu conheça um pouco mais do projeto Eclipse e sobre a comunidade. Além disso esse período vai servir para que os estudantes e mentores se conheçam. Depois disso, no dia 23 de Maio, é mão na massa!<br /><br />Além disso <a href="http://dev.eclipse.org/mhonarc/lists/soc-dev/msg01603.html">é esperado (pelo menos pelo projeto Eclipse)</a> que os estudantes bloguem a respeito de seus projetos e seu progresso, além de se reportarem semanalmente na lista de discussão criada para o programa.</div>
 </div>
   
   
@@ -209,10 +204,6 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
     <section>
   <h1>Recent Posts</h1>
   <ul id="recent_posts">
-    
-      <li class="post">
-        <a href="/2013/03/05/creating-your-own-ami/">Creating your own AMI</a>
-      </li>
     
       <li class="post">
         <a href="/2012/01/05/migrando-o-blog-para-octopress/">Migrando o blog para Octopress</a>
@@ -250,6 +241,10 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
         <a href="/2011/04/26/google-summer-of-code-2001-agora-e-pra/">Google Summer of Code 2011: Agora é pra valer</a>
       </li>
     
+      <li class="post">
+        <a href="/2011/04/09/gerenciamento-de-memoria-em-objective-c/">Gerenciamento de Memória em Objective-C</a>
+      </li>
+    
   </ul>
 </section>
 
@@ -262,7 +257,7 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
   <a href="https://github.com/juniorz">@juniorz</a> on GitHub
   
   <script type="text/javascript">
-    $.domReady(function(){
+    $(document).ready(function(){
         if (!window.jXHR){
             var jxhr = document.createElement('script');
             jxhr.type = 'text/javascript';
@@ -280,23 +275,6 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
     });
   </script>
   <script src="/javascripts/github.js" type="text/javascript"> </script>
-</section>
-
-
-<section>
-  <h1>Latest Tweets</h1>
-  <ul id="tweets">
-    <li class="loading">Status updating&#8230;</li>
-  </ul>
-  <script type="text/javascript">
-    $.domReady(function(){
-      getTwitterFeed("ReinaldoJunior", 4, false);
-    });
-  </script>
-  <script src="/javascripts/twitter.js" type="text/javascript"> </script>
-  
-    <a href="http://twitter.com/ReinaldoJunior" class="twitter-follow-button" data-show-count="false">Follow @ReinaldoJunior</a>
-  
 </section>
 
 
@@ -325,7 +303,7 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
     </div>
   </div>
   <footer role="contentinfo"><p>
-  Copyright &copy; 2013 - Reinaldo Junior -
+  Copyright &copy; 2014 - Reinaldo Junior -
   <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
 </p>
 
@@ -340,7 +318,7 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
       (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
     }());
 </script>
@@ -351,7 +329,7 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
 <script>(function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0];
   if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id;
+  js = d.createElement(s); js.id = id; js.async = true;
   js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
@@ -365,7 +343,7 @@ Working on my GSoC project, I noted that the generated Xtext Editor simply stopp
       var twitterWidgets = document.createElement('script');
       twitterWidgets.type = 'text/javascript';
       twitterWidgets.async = true;
-      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
       document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
     })();
   </script>
