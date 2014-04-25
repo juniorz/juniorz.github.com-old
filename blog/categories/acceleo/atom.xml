@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: acceleo | Reinaldo Junior]]></title>
-  <link href="http://blog.reinaldojunior.net/blog/categories/acceleo/atom.xml" rel="self"/>
-  <link href="http://blog.reinaldojunior.net/"/>
-  <updated>2014-04-24T23:21:21-03:00</updated>
-  <id>http://blog.reinaldojunior.net/</id>
+  <link href="https://blog.reinaldojunior.com/blog/categories/acceleo/atom.xml" rel="self"/>
+  <link href="https://blog.reinaldojunior.com/"/>
+  <updated>2014-04-25T18:54:57-03:00</updated>
+  <id>https://blog.reinaldojunior.com/</id>
   <author>
     <name><![CDATA[Reinaldo Junior]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[The Droid DSL]]></title>
-    <link href="http://blog.reinaldojunior.net/2011/05/29/droid-dsl/"/>
+    <link href="https://blog.reinaldojunior.com/2011/05/29/droid-dsl/"/>
     <updated>2011-05-29T00:00:00-03:00</updated>
-    <id>http://blog.reinaldojunior.net/2011/05/29/droid-dsl</id>
+    <id>https://blog.reinaldojunior.com/2011/05/29/droid-dsl</id>
     <content type="html"><![CDATA[<div class='post'>
 The first part of <a href="http://www.google-melange.com/gsoc/project/google/gsoc2011/juniorz/10001">my GSoC project</a> is creating a DSL (<a href="http://en.wikipedia.org/wiki/Domain-specific_language">Domain Specific Language</a>) targeting the development of <a href="http://www.android.com/">Android</a> applications. The main objective is the building of a DSL which can be used as the basis to the development of the Amalgamation Tutorials (the project's final objective).<br /><br />The DSL's abstract syntax [1] (an <a href="http://wiki.eclipse.org/Ecore">Ecore</a> metamodel) was created from the definition of a concrete syntax &nbsp;(a Xtext grammar [2]). To this part, I used&nbsp;<a href="http://www.eclipse.org/Xtext/">Xtext</a>. Before that, I and my mentor had discussed about what granularity level should be used to choose what concepts should be expressed in the DSL. A too fine granularity level could lead to a very detailed DSL but would take too much time to complete, while a too coarse one could lead to an very constrained DSL (and maybe useless).<br /><a name='more'></a><br /><br />Considering this, I chose the following concepts as main concepts to the DSL:<br /><ul><li><b>Application</b> - The main concept. We're talking about Android Applications.</li><li><b>Activity</b> - Represents an application screen and the user interface displayed.</li><li><b>Layout</b> - Represents a collection of UI elements</li><li><b>Widget</b> - Represents the various UI elements</li><li><b>Resource</b> - Represents values which can be assigned to widgets properties. They have a type and can be serialized to a resource file (XML)&nbsp;</li></ul>The following example ilustrates the <a href="http://developer.android.com/resources/tutorials/hello-world.html">Hello World</a> sample application (provided by Android) written using the Droid DSL (there are more Hello World examples available [3])<br /><br /><script src="https://gist.github.com/998290.js"></script><br /><br />In order to have some direction in the creation of the tutorials, I started to create a code-generator using a Model-to-Text transformation. The transformation [4] can generate the <a href="http://developer.android.com/guide/topics/manifest/manifest-intro.html">AndroidManifest.xml</a> file that describes the application, the Activity Java class, the Layout XML file and the String resource XML file.<br />To make this I used the <a href="http://www.eclipse.org/acceleo/">Acceleo</a>.<br /><br />If you want to play with this DSL you just need to install the <a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/deploy/plugins">generated plugins</a> in your Eclipse and create a new file with the <i>.droid</i> extension.&nbsp;For more information check the <a href="https://github.com/eclipse-soc/amalgamation-examples">project repository</a> at GitHub.<br /><div style="margin-bottom: 0px; margin-left: 0px; margin-right: 0px; margin-top: 0px;"><br /></div><b><i>References</i></b>:<br /><br /><ol><li>Harel, D., &amp; Rumpe, B. (2000). <a href="http://citeseer.ist.psu.edu/viewdoc/summary?doi=10.1.1.10.1512">Modeling Languages: Syntax, Semantics and All That Stuff Part I: The Basic Stuff</a>. Citeseer. doi: 10.1.1.10.1512.</li><li>To more info, see:&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/blob/master/xtext/plugins/org.eclipse.amalgam.tutorials.xtext/src/org/eclipse/amalgam/tutorials/xtext/Droid.xtext">Droid.xtext</a></li><li>Some of the Hello Views tutorials are available:&nbsp;<a href="https://gist.github.com/998350">Relative Layout</a>&nbsp;and&nbsp;<a href="https://gist.github.com/998349">Linear Layout</a>.</li><li>Available under&nbsp;<a href="https://github.com/eclipse-soc/amalgamation-examples/tree/master/acceleo/plugins/org.eclipse.amalgam.tutorials.acceleo/src/org/eclipse/amalgam/tutorials/acceleo/files">this path</a></li></ol></div>
 

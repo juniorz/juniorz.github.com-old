@@ -1,4 +1,4 @@
 User-agent: *
 Disallow: 
 
-Sitemap: http://blog.reinaldojunior.net/sitemap.xml 
+Sitemap: https://blog.reinaldojunior.com/sitemap.xml 

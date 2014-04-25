@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: deploy | Reinaldo Junior]]></title>
-  <link href="http://blog.reinaldojunior.net/blog/categories/deploy/atom.xml" rel="self"/>
-  <link href="http://blog.reinaldojunior.net/"/>
-  <updated>2014-04-24T23:21:21-03:00</updated>
-  <id>http://blog.reinaldojunior.net/</id>
+  <link href="https://blog.reinaldojunior.com/blog/categories/deploy/atom.xml" rel="self"/>
+  <link href="https://blog.reinaldojunior.com/"/>
+  <updated>2014-04-25T18:54:57-03:00</updated>
+  <id>https://blog.reinaldojunior.com/</id>
   <author>
     <name><![CDATA[Reinaldo Junior]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Deploy automatizado de aplicações Rails com Capistrano e Github]]></title>
-    <link href="http://blog.reinaldojunior.net/2011/07/11/deploy-automatizado-de-aplicacoes-rails/"/>
+    <link href="https://blog.reinaldojunior.com/2011/07/11/deploy-automatizado-de-aplicacoes-rails/"/>
     <updated>2011-07-11T00:00:00-03:00</updated>
-    <id>http://blog.reinaldojunior.net/2011/07/11/deploy-automatizado-de-aplicacoes-rails</id>
+    <id>https://blog.reinaldojunior.com/2011/07/11/deploy-automatizado-de-aplicacoes-rails</id>
     <content type="html"><![CDATA[<div class='post'>
 Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.<br /><br /><h2>Configurando o servidor</h2>No servidor, crie um usuário que será utilizado para realizar o deploy. Eu utilizei uma senha gerada aleatóriamente (um MD5 de um arquivo, por exemplo). Em seguida, adicionei minha chave privada (a que eu uso para acessar meus repositórios no Github) ao arquivo authorized_keys do usuário de deploy.<br /><br /><b>Na máquina local</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />scp ~/.ssh/id_rsa.pub reinaldo@servidor:/home/reinaldo/my_key.pub<br />ssh reinaldo@servidor<br /></span><br /><br /><b>No servidor</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />sudo adduser deploy<br />MY_PUBLIC_KEY=/home/reinaldo/my_key.pub<br />sudo mkdir -p /home/deploy/.ssh<br />sudo cat $MY_PUBLIC_KEY&nbsp;&gt;&gt; /home/deploy/.ssh/authorized_keys &amp;&amp; rm&nbsp;$MY_PUBLIC_KEY<br />sudo chmod 600 /home/deploy/.ssh/authorized_keys<br />sudo chmod 700 /home/deploy/.ssh<br />sudo chown deploy:deploy -R /home/deploy</span><br /><br /><h2>Configurando a aplicação</h2>Adicione a gem capistrano no seu <b>Gemfile</b><br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">gem 'capistrano'</span><br /><br />Em seguida, no diretório da aplicação<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;"><br />bundle install<br />capify .<br />echo ".bundle\n" &gt;&gt; .gitignore<br /></span><br /><br />Isso vai criar o arquivo <b>config/deploy.rb</b> onde serão armazenadas as configurações de deploy, bem como as tasks.<br /><br />Meu arquivo ficou assim:<br /><script src="https://gist.github.com/1076956.js"> </script><br /><br />Pra finalizar, você precisa criar os diretórios no servidor. Para isso simplesmente execute (no diretorio da aplicação)<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy:setup</span><br /><br /><h2>Realizando o Deploy</h2><br />Depois disso, você poderá realizar seu deploy automático executando o comando:<br /><span class="Apple-style-span" style="font-family: 'Courier New', Courier, monospace;">cap deploy</span></div>
 
@@ -26,9 +26,9 @@ Nesse tutorial irei abordar a realização de deploy automatizado de uma aplica�
   
   <entry>
     <title type="html"><![CDATA[Deploy automatizado de aplicações Rails com Capistrano e Github]]></title>
-    <link href="http://blog.reinaldojunior.net/2011/07/11/deploy-automatizado-de-aplicacoes-rails/"/>
+    <link href="https://blog.reinaldojunior.com/2011/07/11/deploy-automatizado-de-aplicacoes-rails/"/>
     <updated>2011-07-11T00:00:00-03:00</updated>
-    <id>http://blog.reinaldojunior.net/2011/07/11/deploy-automatizado-de-aplicacoes-rails</id>
+    <id>https://blog.reinaldojunior.com/2011/07/11/deploy-automatizado-de-aplicacoes-rails</id>
     <content type="html"><![CDATA[<p>Nesse tutorial irei abordar a realização de deploy automatizado de uma aplicação Rails (3.0.X) utilizando o Github como repositório. A idéia é utilizar o capistrano para automatizar (e organizar) as tarefas de deployment. Para isso, irei criar um usuário no servidor que utilizará minha chave privada (cadastrada no Github) para fazer o deployment da aplicação.</p>
 
 <h2>Configurando o servidor</h2>

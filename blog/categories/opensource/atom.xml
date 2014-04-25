@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: opensource | Reinaldo Junior]]></title>
-  <link href="http://blog.reinaldojunior.net/blog/categories/opensource/atom.xml" rel="self"/>
-  <link href="http://blog.reinaldojunior.net/"/>
-  <updated>2014-04-24T23:21:21-03:00</updated>
-  <id>http://blog.reinaldojunior.net/</id>
+  <link href="https://blog.reinaldojunior.com/blog/categories/opensource/atom.xml" rel="self"/>
+  <link href="https://blog.reinaldojunior.com/"/>
+  <updated>2014-04-25T18:54:57-03:00</updated>
+  <id>https://blog.reinaldojunior.com/</id>
   <author>
     <name><![CDATA[Reinaldo Junior]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[How to build GStreamer from source]]></title>
-    <link href="http://blog.reinaldojunior.net/2011/12/10/how-to-build-gstreamer-from-source/"/>
+    <link href="https://blog.reinaldojunior.com/2011/12/10/how-to-build-gstreamer-from-source/"/>
     <updated>2011-12-10T09:09:00-02:00</updated>
-    <id>http://blog.reinaldojunior.net/2011/12/10/how-to-build-gstreamer-from-source</id>
+    <id>https://blog.reinaldojunior.com/2011/12/10/how-to-build-gstreamer-from-source</id>
     <content type="html"><![CDATA[<p>This post shows how to build and install <a href="http://gstreamer.freedesktop.org/">GStreamer</a> from source. It targets building GStreamer for Mac OS X Lion. The procedure is quite similar if you want to build GStreamer for Linux.</p>
 
 <p>The GStreamer is organized into <a href="http://gstreamer.freedesktop.org/modules/">several modules</a>. The required modules are <strong>gstreamer</strong>, <strong>gst-plugins-base</strong> and <strong>gst-plugins-good</strong> (if you want to do anything useful). This post will show how to build also <strong>gst-plugins-bad</strong> and <strong>qt-gstreamer</strong> modules.</p>
